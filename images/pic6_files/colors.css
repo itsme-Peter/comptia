@@ -1,0 +1,126 @@
+﻿.baseColor,
+input[type=button],
+.menuTitle.active:hover,
+#tabHeadings span.tabHeading.selected,
+#tabHeadings span.tabHeading.selected:hover {
+    background-color: #007936;
+}
+
+.hoverColor:hover,
+input[type=button]:hover,
+div.menuItem:hover {
+    background-color:#198c16;
+}
+
+.activeColor:active,
+input[type=button]:active,
+div.menuItem:active {
+    background-color:#1b9917;
+}
+
+.selectedColor.selected,
+.selectedColor.selected:hover,
+div.menuItem.selected,
+div.menuItem.selected:hover {
+    background-color: #2b9229;
+}
+
+.consoleColor {
+    background-color:#444;
+}
+
+.calloutColor {
+    background-color:#666;
+}
+
+#tabHeadings span.tabHeading:hover {
+    background-color:#333
+}
+
+#progressBar {    
+    border:solid 1px #007936;
+}
+
+.alertBackground {
+    background-color:#ba1d48;  
+}
+
+#screenshotLoading{
+    background-image:url("/images/virtualization-client/loadingGear-WhiteOnGray.gif");
+}
+
+#fullScreenMessage.withLoadingImage #fullScreenMessageTextWrapper {
+    background-image:url("/images/virtualization-client/FullScreenLoadingOnGreen.gif");
+}
+
+#alertCallout {
+    background-image: url("/images/virtualization-client/Callout-ba1d48.png");
+}
+
+#ideaCallout {
+    background-image:url("/images/virtualization-client/Callout-666666.png");
+}
+
+#screenshotCallout {
+    background-image:url("/images/virtualization-client/Callout-White.png");
+    left:126px;
+}
+
+#videoCallout {
+    background-image:url("/images/virtualization-client/Callout-White.png");
+    left:134px;
+}
+
+
+input[type=range]::-webkit-slider-thumb {
+  background: #b4f5b0;
+}
+
+input[type=range]::-moz-range-thumb {
+  background: #b4f5b0;
+}
+
+input[type=range]::-ms-thumb {
+  background: #b4f5b0;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  background: #2b9229;
+}
+
+input[type=range]:active::-webkit-slider-runnable-track {
+  background: #1b9917;
+}
+
+input[type=range]::-moz-range-track {
+  background: #2b9229;
+}
+
+input[type=range]:active::-moz-range-track {
+  background: #1b9917;
+}
+
+input[type=range]::-ms-track {
+  background: #2b9229;
+}
+
+input[type=range]::-ms-fill-lower {
+  background: #2b9229;
+}
+
+input[type=range]:active::-ms-fill-lower {
+  background: #1b9917;
+}
+
+input[type=range]:active::-ms-fill-upper {
+  background: #2b9229;
+}
+
+progress {
+    color:#007936;
+    background-color: #fff;
+}
+
+.tabHeading.selected {
+    border-bottom: 4px solid #007936;
+}

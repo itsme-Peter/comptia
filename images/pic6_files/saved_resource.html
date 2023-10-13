@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<!-- saved from url=(0112)https://labclient.labondemand.com/VirtualizationClient/25030ce6-d779-47ea-b732-d5d5e525e02f/?childClient=1&rc=10 -->
+<html lang="en-US"><script async="" src="./pendo.js.download"></script><script type="text/javascript">window["_gaUserPrefs"] = { ioo : function() { return true; } }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./strings-en.js.download"></script>
+    <meta name="viewport" content="width=device-width">
+    <title>05: Assisted Lab: Installing, Using, and Blocking a Malware-based Backdoor</title>
+    <link rel="shortcut icon" href="https://labclient.labondemand.com/images/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="./virtualization-client.css" rel="stylesheet" type="text/css">
+    <script src="./jquery-2.1.4.min.js.download"></script>
+    <script src="./jquery-ui-1.10.4.min.js.download"></script>
+    <link id="jqueryUiStylesheet" href="./jquery-ui-1.10.4.min.css" rel="stylesheet">
+    <link id="colorsStylesheet" href="./colors.css" rel="stylesheet">
+    <link href="./jquery.mCustomScrollbar.css" rel="stylesheet">
+    <script src="./jquery.mCustomScrollbar.min.js.download"></script><script src="./jquery.mousewheel.min.js.download"></script>
+    <script src="./LocalizeTo" type="text/javascript"></script>
+        <script src="./appcfg-lod.js.download"></script>
+        <script src="./resource.js.download"></script>
+        <script src="./hi5core_min.js.download"></script>
+        <script src="./hi5_min.js.download"></script>
+        <script src="./surface_min.js.download"></script>
+        <script src="./rdpcore_min.js.download"></script>
+        <script src="./rdp_min.js.download"></script>
+        <script src="./ssh_min.js.download"></script>
+        <script src="./hyperv-spark.js.download"></script>
+
+
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1130.0" data-gr-ext-installed="" data-new-gr-c-s-loaded="14.1130.0">
+    <div id="contentDialog" style="display: none;">
+        <div id="contentDialogContentWrapper">
+            <div id="contentDialogTitle">
+                <div id="closeContentDialogButton" style="display: none;" class="closeButton unselectable" title="Close"></div>
+                <div id="closeContentDialogMessage" style="display: none;"></div>
+            </div>
+            <div id="contentDialogContent">
+                <video id="contentDialogVideo" style="display: none;" controls=""></video>
+            </div>
+        </div>
+        <div id="contentDialogMask"></div>
+    </div>
+
+    <div id="fullScreenMessage" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="fullScreenMessageTitle" aria-describedby="fullScreenMessageText">
+        <div id="fullScreenMessageMask"></div>
+        <div id="fullScreenMessageIcon" style="display: none;"></div>
+        <div id="fullScreenMessageCenter" class="baseColor">
+            <div id="fullScreenMessageTextWrapper">
+                <div id="fullScreenMessageTitle"></div>
+                <div id="fullScreenMessageText"></div>
+                <div id="fullScreenProgressWrapper" style="display: none;">
+                    <div id="fullScreenProgressText"></div>
+                    <div id="fullScreenProgressBar">
+                        <div id="fullScreenProgressFill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="labConsole" style="" class="childClient " role="main" aria-label="Lab Workspace">
+
+        <div id="vmWrapper" class="consoleColor machineWrapper" aria-label="Virtual Machines To access lab controls and break out of the vm focus press CTRL + ALT + Break" role="application" style="right: 0px; bottom: 0px; overflow: auto;"><div id="sparkViewWrapper" style="text-align:left; position:relative; overflow:hidden;"><canvas id="remotectrl" width="1024" height="768" style="outline: none; background-color:#000;"></canvas><div contenteditable="true" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" accesskey="f" id="wsinput" tabindex="1" style="opacity: 0.01; resize: none; position: absolute; margin: 0px; border: none; outline: none; left: 0px; top: 0px; padding: 100px 0px 0px 100px; width: 924px; height: 668px; z-index: 88; cursor: default; font-weight: normal; overflow: hidden; font-size: 2em;"></div></div></div>
+        <div id="sshWrapper" class="consoleColor" style="display: none;"></div>
+        <div id="containerWrapper" class="consoleColor" style="display: none;"></div>
+
+        <div id="rdpWrapper" style="display: none;">
+            <div>This machine must be controlled outside of your browser via Remote Desktop.</div>
+            <input type="button" id="launchRdp" value="Launch Remote Desktop">
+            <table>
+                <tbody><tr>
+                    <td>Username:</td>
+                    <td><span id="rdpUsername"></span></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><span id="rdpPassword"></span></td>
+                </tr>
+            </tbody></table>
+        </div>
+
+            <div id="titleBar" role="menubar">
+                <div id="titleBarContent">
+                    <div id="titleBarRight">
+                        <div id="machineCommands" class="unselectable menuTitle active" title="Commands" tabindex="0" role="menuitem" aria-expanded="false" aria-haspopup="true" style="display: block;">&nbsp;</div>
+                        <div id="machineCommandsMenu" class="menu">
+                            <div class="menuWrapper baseColor">
+                                <div class="menuItem" id="ctlAltDel" tabindex="0" role="menuitem">Ctrl+Alt+Delete</div>
+                                    <div class="menuItem" id="altTab" tabindex="0" role="menuitem">ALT+Tab</div>
+                                    <div id="windowsKeyWrapper" class="menuItem parent" tabindex="0" role="menuitem" aria-expanded="false" aria-haspopup="true">
+                                        Windows Key
+                                        <div class="children">
+                                            <div class="menuWrapper baseColor">
+                                                <div class="menuItem" id="windowsKey" tabindex="0" role="menuitem">Windows Key</div>
+                                                <div class="menuItem" id="windowsKeyD" tabindex="0" role="menuitem">Windows Key + D</div>
+                                                <div class="menuItem" id="windowsKeyE" tabindex="0" role="menuitem">Windows Key + E</div>
+                                                <div class="menuItem" id="windowsKeyF" tabindex="0" role="menuitem">Windows Key + F</div>
+                                                <div class="menuItem" id="windowsKeyM" tabindex="0" role="menuitem">Windows Key + M</div>
+                                                <div class="menuItem" id="windowsKeyR" tabindex="0" role="menuitem">Windows Key + R</div>
+                                                <div class="menuItem" id="windowsKeyX" tabindex="0" role="menuitem">Windows Key + X</div>
+                                                <div class="menuItem" id="windowsKeyPlus" tabindex="0" role="menuitem">Windows Key + ...</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="menuItem" id="windowsKeyStandAlone" style="display: none;" tabindex="0" role="menuitem">Windows Key</div>
+                                    <div id="paste" class="menuItem parent" tabindex="0" role="menuitem" aria-expanded="false" aria-haspopup="true">
+                                        Type Text
+                                        <div class="children">
+                                            <div class="menuWrapper baseColor">
+                                                <div class="menuItem" id="pasteUsername" tabindex="0" role="menuitem">Type Username</div>
+                                                <div class="menuItem" id="pastePassword" tabindex="0" role="menuitem">Type Password</div>
+                                                <div class="menuItem" id="pasteClipboard" tabindex="0" role="menuitem">Type Clipboard Text</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="power" class="menuItem parent" tabindex="0" role="menuitem" aria-expanded="false" aria-haspopup="true">
+                                        Power
+                                        <div class="children">
+                                            <div class="menuWrapper baseColor">
+                                                <div class="menuItem" id="turnOnMachine" style="display: none;" tabindex="0" role="menuitem">Start Machine</div>
+                                                <div class="menuItem" id="pauseMachine" tabindex="0" role="menuitem">Pause Machine</div>
+                                                <div class="menuItem" id="resumeMachine" style="display: none;" tabindex="0" role="menuitem">Resume Machine</div>
+                                                <div class="menuItem" id="resetMachine" tabindex="0" role="menuitem">Reset/Reboot Machine</div>
+                                                <div class="menuItem" id="turnOffMachine" tabindex="0" role="menuitem">Turn Off Machine</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="menuItem" id="revertMachine" tabindex="0" role="menuitem" style="display: none;">Revert Machine</div>
+                                    <div class="menuItem" id="showVirtualKeyboard" tabindex="0" role="menuitem">Virtual Keyboard</div>
+                                    <div class="menuItem" id="resetInternetGateway" tabindex="0" role="menuitem">Reset Internet Gateway</div>
+                            </div>
+                        </div>
+
+                        <div id="displayMenuTitle" title="Display" class="menuTitle unselectable active" tabindex="0" role="menuitem" aria-expanded="false" aria-haspopup="true">&nbsp;</div>
+                        <div id="displayMenu" class="menu">
+                            <div class="menuWrapper baseColor">
+                                <div id="fullscreen" class="menuItem" tabindex="0" role="button">Full Screen</div>
+                                <div class="menuItem" id="fitWindowToMachine" tabindex="0" role="menuitem" style="display: block;">Fit Window to Machine</div>
+                                <div class="menuItem" id="fitMachineToWindow" tabindex="0" role="menuitem" style="display: none;">Fit Machine To Window</div>
+                                    <div class="menuItem open-in-new-window-link icon-link" id="openInNewWindow" tabindex="0" role="menuitem">Open in new window</div>
+                                <div class="menuItem" id="refreshDisplay" tabindex="0" role="menuitem" style="display: block;">Reconnect</div>
+                            </div>
+                        </div>
+
+                            <div id="miniConnectionImageDiv" class="tooltip">
+                                <img id="miniConnectionImage" src="./Connection1-s.png" tabindex="0" title="Connection: Poor (531 ms)">
+                            </div>
+
+                        <div id="notificationsLink" title="Notifications" class="menuTitle unselectable "></div>
+
+                        <div id="timer" class="unselectable"></div>
+                            <div id="exit" class="unselectable menuTitle active" title="Exit" tabindex="0" role="menuitem">&nbsp;</div>
+                            <div id="exitMenu" class="menu">
+                                <div class="menuWrapper baseColor">
+                                        <div class="menuItem" id="saveLab" tabindex="0" role="menuitem">Save and Close Lab</div>
+                                        <div class="menuItem" id="cancelLab" tabindex="0" role="menuitem">Cancel Lab</div>
+                                        <div class="menuItem" id="endLab" tabindex="0" role="menuitem">End Lab</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div id="titleBarLeft">
+                        <div id="labNameWrapper">
+                            <div id="labName">05: Assisted Lab: Installing, Using, and Blocking a Malware-based Backdoor</div>
+                        </div>
+                        <div id="machineNameWrapper">
+                            <div id="machineNameWrapper2">
+                                    <span id="machineName" class="menuTitle active" tabindex="0" aria-expanded="false" role="menuitem" aria-haspopup="true">DC1</span>
+                            </div>
+                        </div>
+                            <div id="machineSelectMenu" class="menu">
+                                <div class="menuWrapper baseColor"><div class="menuItem menu-item selected" role="menuitem" tabindex="0" id="machineSelect127486">DC1</div><div class="menuItem menu-item" role="menuitem" tabindex="0" id="machineSelect127487">RT1-LOCAL</div><div class="menuItem menu-item" role="menuitem" tabindex="0" id="machineSelect127488">MS1</div></div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        <div id="navigationBar" style="width: 400px; display: none; bottom: 0px;">
+            <div id="navigationBarResizer"></div>
+            <div id="navigationBarInner">
+                <div id="tabHeadings">
+                        <span id="tabHeadingContent" data-id="0" class="tabHeading selected unselectable">Content</span>
+                        <span id="tabHeadingMachines" data-id="1" class="tabHeading unselectable">Machines</span>
+                        <span id="tabHeadingSupport" data-id="2" class="tabHeading unselectable">Support</span>
+                </div>
+                <div id="navigationBarScrollable" class="baseColor mCustomScrollbar _mCS_2"><div class="mCustomScrollBox mCS-light" id="mCSB_2" style="position:relative; height:100%; overflow:hidden; max-width:100%;"><div class="mCSB_container mCS_no_scrollbar" style="position:relative; top:0;">
+                        <div id="tabContent" class="tab">
+                           
+                            <div id="altResourcesWrapper"></div>
+                           
+                        </div>
+
+                        <div id="tabMachines" class="tab" style="display: none;">
+                            <div id="machines"></div>
+                        </div>
+
+                        <div id="tabSupport" class="tab" style="display: none;">
+                                <h2><label for="theme">Theme</label></h2>
+                                <select id="theme">
+                                        <option value="3" data-name="blue">Blue</option>
+                                        <option value="4" data-name="gray">Gray</option>
+                                        <option value="5" data-name="green" selected="selected">Green</option>
+                                        <option value="6" data-name="orange">Orange</option>
+                                        <option value="7" data-name="purple">Purple</option>
+                                        <option value="8" data-name="red">Red</option>
+                                        <option value="20" data-name="dark">Dark</option>
+                                </select>
+
+                                <h2>Connection</h2>
+                                <div style="float: left; margin-top: 2px; margin-left: 12px;">
+                                    <img id="connectionImage" src="./Connection1.png" style="width: 50px; height: 50px;" alt="">
+                                </div>
+                                <div style="float: left; margin-top: 8px; margin-left: 15px;">
+                                    <table class="fields">
+                                        <tbody><tr>
+                                            <td class="fieldName">Quality</td>
+                                            <td><span id="connectionQuality">Poor</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fieldName">Latency</td>
+                                            <td><span id="latency">531 ms</span></td>
+                                        </tr>
+                                    </tbody></table>
+                                </div>
+                                <div style="clear: both;"></div>
+
+                            <div id="resources" class="section" style="display: none;">
+                                <h2>Resources</h2>
+                                <ul id="resourcesList" class="imageLinksList sectionList"></ul>
+                            </div>
+
+                                <div class="section">
+                                    <h2>Support Information</h2>
+                                    <table class="fields sectionList">
+                                        <tbody><tr>
+                                            <td class="fieldName">ID</td>
+                                            <td>34495175</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fieldName">Host</td>
+                                            <td>SEA-HV29</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fieldName">Datacenter</td>
+                                            <td>US West (Seattle)</td>
+                                        </tr>
+                                    </tbody></table>
+                                </div>
+                                <div class="bugReportWrapper"><a href="https://labclient.labondemand.com/VirtualizationClient/25030ce6-d779-47ea-b732-d5d5e525e02f/?childClient=1&amp;rc=10#" class="bugReport">Report a bug</a></div>
+                                <div style="margin-top:20px;">
+                                    © 2023 <a href="http://learnondemandsystems.com/" target="_blank">Skillable</a>
+                                    <div style="margin-top:5px;"><a href="https://www.facebook.com/Skillable/" target="_blank"><img src="./facebook.png" alt="facebook" width="24" height="24"></a> <a href="https://twitter.com/skillable" target="_blank"><img src="./twitter.png" alt="twitter" width="24" height="24"></a> <a href="https://www.linkedin.com/skillable" target="_blank"><img src="./linkedin.png" alt="LinkedIn" width="29" height="24"></a></div>
+                                </div>
+                        </div>
+                </div><div class="mCSB_scrollTools" style="position: absolute; display: none;"><div class="mCSB_draggerContainer"><div class="mCSB_dragger" style="position: absolute; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="position:relative;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+            </div>
+
+        </div>
+        <div id="quickMessage"></div>
+        <div id="vmOff" style="display: none;">
+            <div>
+                <div class="unselectable">The selected machine is off.</div>
+                <div id="startMachine" class="unselectable baseColor hoverColor activeColor">Start</div>
+            </div>
+        </div>
+        <div id="vmOpenInSeparateWindow" style="display:none;">
+            Machine is open in a separate window.
+            <a id="closeMachineWindow" href="https://labclient.labondemand.com/VirtualizationClient/25030ce6-d779-47ea-b732-d5d5e525e02f/?childClient=1&amp;rc=10#">Close Window</a>
+        </div>
+        <div id="notification" class="baseColor" style="display: none;" role="alert">
+            <div id="closeNotification" class="closeButton unselectable" aria-label="Close"></div>
+            <div id="notificationScrollable" class="mCustomScrollbar _mCS_3"><div class="mCustomScrollBox mCS-light" id="mCSB_3" style="position:relative; height:100%; overflow:hidden; max-width:100%;"><div class="mCSB_container mCS_no_scrollbar" style="position:relative; top:0;">
+                <div id="notificationContent"></div>
+            </div><div class="mCSB_scrollTools" style="position: absolute; display: none;"><div class="mCSB_draggerContainer"><div class="mCSB_dragger" style="position: absolute; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="position:relative;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+        </div>
+    </div>
+
+        <div id="virtualKeyboardWrapper" style="display: block;">
+    <div id="virtualKeyboard" class="virtualKeyboard" style="display:none;">
+        <div class="closeButton">X</div>
+        <div class="keyWrapper">
+            <ul class="keyboard-row fKeys" style="margin-bottom:10px;">
+                <li class="key text" data-key="27">Esc</li>
+                <li class="key text" data-key="112" style="margin-left:33px;">F1</li>
+                <li class="key text" data-key="113">F2</li>
+                <li class="key text" data-key="114">F3</li>
+                <li class="key text" data-key="115">F4</li>
+                <li class="key text" data-key="116" style="margin-right:16px;">F5</li>
+                <li class="key text" data-key="117">F6</li>
+                <li class="key text" data-key="118">F7</li>
+                <li class="key text" data-key="119">F8</li>
+                <li class="key text" data-key="120" style="width:31px; margin-left: 18px;">F9</li>
+                <li class="key text" data-key="121" style="width:31px;">F10</li>
+                <li class="key text" data-key="122" style="width:31px;">F11</li>
+                <li class="key text" data-key="123" style="width:31px;">F12</li>
+                <li class="key text" data-key="44" style="width: 40px; margin-left: 14px; ">PrtSc</li>
+                <li class="key text" data-key="145" style="width:40px;">ScrLk</li>
+                <li class="key text" data-key="19" style="width:40px;">Pause</li>
+            </ul>
+            <ul class="keyboard-row">
+                <li class="key shiftable" data-shift="~" data-normal="`" data-key="192">`</li>
+                <li class="key shiftable" data-shift="!" data-normal="1" data-key="49">1</li>
+                <li class="key shiftable" data-shift="@" data-normal="2" data-key="50">2</li>
+                <li class="key shiftable" data-shift="#" data-normal="3" data-key="51">3</li>
+                <li class="key shiftable" data-shift="$" data-normal="4" data-key="52">4</li>
+                <li class="key shiftable" data-shift="%" data-normal="5" data-key="53">5</li>
+                <li class="key shiftable" data-shift="^" data-normal="6" data-key="54">6</li>
+                <li class="key shiftable" data-shift="&amp;" data-normal="7" data-key="55">7</li>
+                <li class="key shiftable" data-shift="*" data-normal="8" data-key="56">8</li>
+                <li class="key shiftable" data-shift="(" data-normal="9" data-key="57">9</li>
+                <li class="key shiftable" data-shift=")" data-normal="0" data-key="48">0</li>
+                <li class="key shiftable" data-shift="_" data-normal="-" data-key="189">-</li>
+                <li class="key shiftable" data-shift="+" data-normal="=" data-key="187">=</li>
+                <li class="key text small" data-key="8" style="width: 71px;"><span style="font-size: 13pt;">←</span> Backspace</li>
+
+                <li class="key text small" data-key="45" style="width: 40px; margin-left: 14px;">Insert</li>
+                <li class="key text small" data-key="36" style="width: 40px;">Home</li>
+                <li class="key text small" data-key="33" style="width:40px; ">P Up</li>
+
+                <li class="key text small numlock" data-key="144" style="margin-left: 14px;">NLock</li>
+                <li class="key" data-key="111">/</li>
+                <li class="key" data-key="106">*</li>
+                <li class="key" data-key="109">-</li>
+
+            </ul>
+            <ul class="keyboard-row">
+                <li class="key text" data-key="9" style="width:48px;">Tab</li>
+                <li class="key" data-key="81">Q</li>
+                <li class="key" data-key="87">W</li>
+                <li class="key" data-key="69">E</li>
+                <li class="key" data-key="82">R</li>
+                <li class="key" data-key="84">T</li>
+                <li class="key" data-key="89">Y</li>
+                <li class="key" data-key="85">U</li>
+                <li class="key" data-key="73">I</li>
+                <li class="key" data-key="79">O</li>
+                <li class="key" data-key="80">P</li>
+                <li class="key shiftable" data-shift="{" data-normal="[" data-key="219">[</li>
+                <li class="key shiftable" data-shift="}" data-normal="]" data-key="221">]</li>
+                <li class="key shiftable" data-shift="|" data-normal="\" data-key="220" style="width:52px;">\</li>
+                <li class="key text small" data-key="46" style="width: 40px; margin-left: 14px;">Delete</li>
+                <li class="key text small" data-key="35" style="width: 40px;">End</li>
+                <li class="key text small" data-key="34" style="width:40px; ">P Down</li>
+
+                <li class="key numpad" data-shift="7" data-normal="H" data-key="103" style="margin-left: 14px;">H</li>
+                <li class="key numpad" data-shift="8" data-normal="↑" data-key="104">↑</li>
+                <li class="key numpad" data-shift="9" data-normal="PU" data-key="105">PU</li>
+                <li class="key" data-key="107" style="height:43px; position: absolute; right:0; top:0;">+</li>
+            </ul>
+            <ul class="keyboard-row">
+                <li class="key text capslock" data-key="20" style="width:57px;">Caps</li>
+                <li class="key" data-key="65">A</li>
+                <li class="key" data-key="83">S</li>
+                <li class="key" data-key="68">D</li>
+                <li class="key" data-key="70">F</li>
+                <li class="key" data-key="71">G</li>
+                <li class="key" data-key="72">H</li>
+                <li class="key" data-key="74">J</li>
+                <li class="key" data-key="75">K</li>
+                <li class="key" data-key="76">L</li>
+                <li class="key shiftable" data-shift=":" data-normal=";" data-key="186">;</li>
+                <li class="key shiftable" data-shift="&quot;" data-normal="&#39;" data-key="222">'</li>
+                <li class="key text" data-key="13" style="width:76px;"><span style="font-size: 14pt;">↵</span> Enter</li>
+
+                <li class="key numpad" data-shift="4" data-normal="←" data-key="100" style="margin-left: 160px;">←</li>
+                <li class="key numpad" data-shift="5" data-normal="" data-key="101"></li>
+                <li class="key numpad" data-shift="6" data-normal="→" data-key="102">→</li>
+            </ul>
+            <ul class="keyboard-row">
+                <li class="key text modifier shift" data-key="160" style="width:73px;">Shift</li>
+                <li class="key" data-key="90">Z</li>
+                <li class="key" data-key="88">X</li>
+                <li class="key" data-key="67">C</li>
+                <li class="key" data-key="86">V</li>
+                <li class="key" data-key="66">B</li>
+                <li class="key" data-key="78">N</li>
+                <li class="key" data-key="77">M</li>
+                <li class="key shiftable" data-shift="&lt;" data-normal="," data-key="188">,</li>
+                <li class="key shiftable " data-shift="&gt;" data-normal="." data-key="190">.</li>
+                <li class="key shiftable" data-shift="?" data-normal="/" data-key="191">/</li>
+                <li class="key text modifier shift" data-key="161" style="width:93px;">Shift</li>
+                <li class="key text small" data-key="38" style="width: 40px; margin-left: 58px; font-size:14pt;">↑</li>
+
+                <li class="key numpad" data-shift="1" data-normal="E" data-key="97" style="margin-left: 58px;">E</li>
+                <li class="key numpad" data-shift="2" data-normal="↓" data-key="98">↓</li>
+                <li class="key numpad" data-shift="3" data-normal="PD" data-key="99">PD</li>
+                <li class="key text small" data-key="13" style="height: 43px; position: absolute; right: 0; top: 0;">Enter</li>
+            </ul>
+            <ul class="keyboard-row">
+                <li class="key text modifier" data-key="162" style="width:42px;">Ctrl</li>
+                <li class="key text modifier" data-key="91" style="width:42px;">Win</li>
+                <li class="key text modifier" data-key="164" style="width:42px;">Alt</li>
+                <li class="key" data-key="32" style="width:224px;"></li>
+                <li class="key text modifier" data-key="165" style="width:42px;">Alt</li>
+                <li class="key text modifier" data-key="92" style="width:42px;">Win</li>
+                <li class="key text modifier" data-key="163" style="width:42px;">Ctrl</li>
+                <li class="key text small" data-key="37" style="width: 40px; margin-left: 14px; font-size: 14pt;">←</li>
+                <li class="key text small" data-key="40" style="width: 40px; font-size: 14pt;">↓</li>
+                <li class="key text small" data-key="39" style="width: 40px; font-size: 14pt;">→</li>
+
+                <li class="key numpad" data-shift="0" data-normal="Ins" data-key="96" style="margin-left: 14px; width: 62px;">Ins</li>
+                <li class="key numpad" data-shift="." data-normal="Del" data-key="110">Del</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="./jquery.virtual-keyboard.js.download"></script>
+<link href="./jquery.virtual-keyboard.css" rel="stylesheet">
+
+    <div id="templates" style="display:none;">
+        <div class="machine hoverColor selectedColor activeColor accent-background">
+            <div class="machineNameCenter">
+                <div class="machineName"></div>
+            </div>
+            <div class="inputRelease">
+                To release mouse, press <strong>Ctrl+Alt+Left Arrow</strong>
+            </div>
+            <div class="machineInfo" style="display: none;">
+                <table class="credentials fields">
+                    <tbody><tr>
+                        <td class="fieldName">Username</td>
+                        <td><span class="typeText username" title="Type Text" role="button" tabindex="0"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="fieldName">Password</td>
+                        <td><span class="typeText password" title="Type Text" role="button" tabindex="0"></span></td>
+                    </tr>
+                </tbody></table>
+                <div class="floppyDrive">
+                </div>
+                <div class="dvdDrive">
+                    <div class="dvdDriveInner">
+                        <div class="selectHeading">DVD Drive</div>
+                        <select>
+                            <option value="-2">No Media</option>
+                                <option value="11733">ODYSSEUS</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="networkAdapters"></div>
+                <input type="button" class="ctrlAltDel ctrl-alt-del-button" value="Ctrl+Alt+Delete">
+                    <a class="openInNewWindow open-in-new-window-link icon-link" href="https://labclient.labondemand.com/VirtualizationClient/25030ce6-d779-47ea-b732-d5d5e525e02f/?childClient=1&amp;rc=10#">Open in new window</a>
+            </div>
+        </div>
+
+        <div class="contentResource hoverColor selectedColor activeColor">
+            <div class="machineNameCenter">
+                <div class="machineName"></div>
+            </div>
+        </div>
+
+        <div class="networkAdapter">
+            <div class="selectHeading name"></div>
+            <select>
+                <option value="-1">Not Connected</option>
+                    <option value="98494">vLOCAL</option>
+                    <option value="98550">vISP</option>
+                    <option value="98551">vINT00</option>
+                    <option value="98552">vINT01</option>
+                    <option value="98553">vINT02</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        var model = {
+            labInstanceId: 34495175,
+            labProfileId: 84040,
+            key: "25030ce6-d779-47ea-b732-d5d5e525e02f",
+            platformId: 2,
+            contentOnly: false,
+            isChildClient: true,
+            isMonitor: false,
+            isTakeControl: false,
+            showWhenStarting: false,
+            allowShowWhenStarting: false,
+            maxLabSaveDurationDays: 7,
+            maxSavedLabs: 2,
+            maxSnapshots: 0,
+            allowTimeExtensions: true,
+            promptForExtensionMinutes: 10,
+            extensionMinutes: 15,
+            impersonatorName: "",
+            monitorName: "",
+            showNavigationBar: false,
+            showTitleBar: true,
+            themeId: 5,
+            limitedScreenSizes: true,
+            hasStartState: false,
+            useStaticThumbnails: false,
+            evaluationId: null,
+            evaluationServiceUrl: "",
+            isExam: true,
+            postLabUrl: "",
+            freshFromPreinstance : false,
+            useCookies : true,
+            language: "en-US",
+            showConnectionQuality: true,
+            latencyEndpoint: "https://sea-dcs01.labondemand.com/latency",
+            useGetForLatencyEndpoint: false,
+            remoteControllerChanged: false,
+            completionStatus: 3,
+            showPasteLinks: true,
+            enableNavigationWarning: true,
+            enableRdpSessionShadowing: true,
+            sessionShadowUserName: "PK",
+            recordRdpSession: false,
+            orgId: "2318",
+            forcedMachineId: null,            
+            autoFocus: true,
+            layoutVersion: 1,
+         };
+    </script>
+
+    
+<script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = o._q || [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+                    o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+                })(v[w]);
+                y = e.createElement(n); y.async = !0; y.src = 'https://content.analytics.learnondemandsystems.com/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+
+            pendo.initialize({
+                visitor: {
+                    id: "lod-4989495",
+                    platform: "lod",
+                    iem: false,
+                    labAuthor: false,
+                    instructionsAuthor: false
+                },
+                account: {
+                    id: "lod-51",
+                    name: "CompTIA Learning Group - Production",
+                    platform: "lod"
+                }
+            });
+        })("96676bcb-26ef-4838-444e-e6794e8d7b9a");
+</script>
+
+
+
+
+<div id="modalDialog" style="display:none;" class="mCustomScrollbar _mCS_1"><div class="mCustomScrollBox mCS-light" id="mCSB_1" style="position:relative; height:100%; overflow:hidden; max-width:100%;"><div class="mCSB_container mCS_no_scrollbar" style="position:relative; top:0;"><div id="modalContent"></div></div><div class="mCSB_scrollTools" style="position: absolute; display: none;"><div class="mCSB_draggerContainer"><div class="mCSB_dragger" style="position: absolute; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="position:relative;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div><div id="hi5_notifer_all"></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>

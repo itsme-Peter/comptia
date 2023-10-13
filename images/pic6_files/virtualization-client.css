@@ -1,0 +1,1760 @@
+﻿@font-face {
+    font-family: "labclient";
+    src: url("/fonts/labclient.woff?v=25") format("woff"), 
+         url("/fonts/labclient.ttf?v=25") format("truetype"), 
+         url("/fonts/labclient.svg?v=25") format("svg");
+}
+
+
+html {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    height:100%;
+}
+
+body {
+    height:100%;
+    background-color: #000;
+    color: #fff;
+    font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+#ideaContent a, #alertContent a, #taskText a, #contentWindowIdea a, #contentWindowAlert a, #contentWindowTaskText a {
+    text-decoration: underline;
+}
+
+h2 {
+    font-size: 13px;
+}
+
+iframe {
+    border-style: none;
+}
+
+.tab h2 {
+    margin-bottom: 3px;
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 12px;
+}
+
+    .tab h2:first-child {
+        margin-top: 0;
+    }
+
+#tabContent h2 {
+    margin-bottom: 10px;
+}
+
+ol, ul {
+    padding-left: 15px;
+}
+
+select {
+    border-style: none;
+    padding: 4px;
+    font-size: 12px;
+}
+
+.checkboxWithLabel {
+    clear: both;
+    margin-bottom: 5px;
+}
+
+    .checkboxWithLabel input {
+        float: left;
+        margin-top: 1px;
+    }
+
+    .checkboxWithLabel label {
+        display: block;
+        margin-left: 1.5em;
+        /*line-height: 1em;*/
+    }
+
+iframe.overlayMask {
+    position: absolute;
+    width: 100%;
+    border: 0px;
+    filter: progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0);
+    opacity: 0;
+}
+
+#modalDialog {
+    padding: 0;
+}
+
+#modalContent {
+    padding: 10px 15px;
+}
+
+#modalDialog div.mCSB_scrollTools {
+    top: 8px;
+    bottom: 8px;
+    right: 2px;
+    height: auto;
+}
+
+#modalDialog div.mCSB_draggerRail {
+    background-color: #585858;
+    width: 6px;
+}
+
+#contentDialogContentWrapper {
+    position: absolute;
+    z-index: 2001;
+    top: 80px;
+    bottom: 80px;
+    left: 80px;
+    right: 80px;
+    background-color: #000;
+    border: solid 1px #fff;
+}
+
+#contentDialogTitle {
+    padding: 12px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: right;
+}
+
+#closeContentDialogButton {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    cursor: pointer;
+    background-image: url("/images/virtualization-client/CloseIcon.png?v=9");
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+}
+
+
+#contentDialogContent {
+    margin: 0 20px 20px 20px;
+    position: absolute;
+    top: 32px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#contentDialogIFrame {
+    width: 100%;
+    height: 100%;
+}
+
+#contentDialogVideo {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#contentDialogMask {
+    position: absolute;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    opacity: .5;
+}
+
+#fullScreenMessage {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#fullScreenMessageMask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    opacity: .8;
+    filter: progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=80);
+}
+
+#fullScreenMessageCenter {
+    /*position: absolute;
+    width: 100%;
+    height: 220px;
+    top: 50%;
+    margin-top: -110px;*/
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    min-height: 220px;
+}
+
+#fullScreenMessageTextWrapper {
+    /*margin: 86px 0 0 80px;
+    padding: 0 20px 20px 0;*/
+    background-repeat: no-repeat;
+    padding:80px;    
+}
+
+#fullScreenMessage.withLoadingImage #fullScreenMessageTextWrapper {
+    /*padding-left: 54px;*/
+    margin-left: 30px;
+    background-position: 20px 80px;
+}
+
+#fullScreenMessageTitle {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+#fullScreenMessageText {
+    font-size: 14px;
+    margin-bottom:10px;
+}
+
+#fullScreenProgressBar {
+    width: 600px;
+    height: 6px;
+    margin-top: 15px;
+    border: solid 1px #fff;
+}
+
+#fullScreenProgressFill {
+    background-color: #fff;
+    height: 6px;
+    width: 0;
+}
+
+#fullScreenProgressText {
+    font-size: 14px;
+}
+
+#rdpWrapper {
+    position: absolute;
+    top: 50px;
+    left: 30px;
+    right: 275px;
+    overflow: auto;
+    z-index: 0;
+}
+
+#launchRdp {
+    margin: 15px 0;
+}
+
+#contentResourceWrapper {
+    position: absolute;
+    top: 19px;
+    bottom: 70px;
+    left: 0;
+    overflow: auto;
+    z-index: 0;
+    display: inline-block;
+    white-space: nowrap;
+    text-align: center;
+}
+
+#sshWrapper {
+    margin-top: 19px;
+    height: calc(100% - 19px);
+    box-sizing: border-box;
+    background-color: black;
+    position:relative;
+}
+
+.sshClient {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 0;
+    bottom: 0;
+}
+
+.sshClientStatus {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.terminal .xterm-viewport {
+    overflow-y: auto !important;
+}
+
+#vmWrapper {
+    position: absolute;
+    top: 19px;
+    bottom: 70px;
+    left: 0;
+    overflow: auto;
+    z-index: 0;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+
+
+#vmWrapper.machineWrapper {
+text-align: center;
+}
+
+#vmWrapper.machineWrapper:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+#vmWrapper canvas, #vmWrapper object, #vmWrapper div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#vmOpenInSeparateWindow {
+    font-size: 15px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+#closeMachineWindow {
+    margin-left: 10px;
+}
+
+#closeMachineWindow::before {
+    content: "\e711";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    margin-top:3px;
+    margin-right:4px;
+}
+
+.machine .openInNewWindow {
+    margin-top: 10px;
+    display: block;
+}
+
+.machine .openInNewWindow::before {
+    content: "\e90a";
+    font-family: "labclient";
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.machine .openInNewWindow.open::before {
+    content: "\e711";
+}
+
+#vmOff {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 19px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+#vmOff:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+#vmOff > div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#startMachine {
+    margin-top: 10px;
+    cursor: pointer;
+    border: solid 1px #fff;
+    padding: 8px 16px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #fff;
+    display: inline-block;
+}
+
+#titleBar {
+    background-color: #000;
+    color: white;
+    line-height: 19px;
+    height: 19px;
+    font-size: 11px;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 100%;
+    white-space: nowrap;
+}
+
+#titleBarContent {
+    position: relative;
+    width: 100%;
+    height: 19px;
+}
+
+#titleBarMask {
+    position: absolute;
+    width: 100%;
+    height: 19px;
+}
+
+#titleBarLeft {
+    margin-left: 5px;
+    margin-right: 335px;
+}
+
+#titleBarPin {
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    margin-left: -20px;
+    margin-top: 3px;
+}
+
+#quickMessage {
+    position: absolute;
+    font-size: 11px;
+    left: 120px;
+    top: 1px;
+    z-index: 10;
+}
+
+#labNameWrapper {
+    float: left;
+    width: 50%;
+}
+
+#labName {
+    margin-right: 20px;
+    overflow: hidden;
+}
+
+#machineNameWrapper {
+    float: left;
+    width: 50%;
+    color: #ccc;
+}
+
+#machineNameWrapper2 {
+    position: absolute;
+    overflow: hidden;
+    padding-left: 20px;
+}
+
+#machineName {
+    color: #fff;
+    display: inline-block;
+    padding: 0 5px 0 5px;
+}
+
+#machineSelectMenu {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    top: 19px;
+    left: 0px;
+}
+
+
+.typeText {    
+    font-weight:bold;
+    cursor: pointer;
+}
+
+.typeText::before {
+    font-weight: bold;
+    border: solid 1px;
+    content: "T";
+    font-family: "font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;";
+    margin-right: 4px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 1px 4px 0px 4px;
+}
+
+
+div.inputRelease {
+    margin-top: 10px;
+    display: none;
+}
+
+#titleBarRight {
+    position: absolute;
+    background-color: #000;
+    height: 19px;
+    top: 0;
+    right: 0;
+    width: 415px;
+}
+
+.menuTitle.active {
+    cursor: pointer;
+}
+
+#miniConnectionImage {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 2px;
+    left: 0px;
+}
+
+#developerMenuTitle {
+    position: absolute;
+    left: 56px;
+    padding: 0 8px 0 8px;
+    line-height: 19px;
+}
+
+#developerMenuTitle:before {
+    content: "\e713";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 13px;
+}
+
+#developerMenu {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    top: 19px;
+    left: 0px;
+}
+
+#notificationsLink {
+    left:85px;
+    position: absolute;
+    padding: 0 8px 0 8px;
+    line-height: 19px;
+    opacity: .5;
+}
+
+#notificationsLink.active {
+    opacity: 1;
+}
+
+#notificationsLink:before {
+    content: "\e715";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size:15px;
+}
+
+#displayMenuTitle {
+    position: absolute;
+    left: 116px;
+    line-height: 19px;
+    padding: 0 6px 0 10px;
+}
+
+#displayMenuTitle:before {
+    content: "\e915";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 13px;
+}
+
+#displayMenu {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    top: 19px;
+    left: 0px;
+}
+
+#machineCommands {
+    position: absolute;
+    left: 149px;
+    line-height: 19px;
+    padding: 0 6px 0 10px;
+}
+
+#machineCommands:before {
+    content: "\e944";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 11px;
+}
+
+#machineName:hover, #machineCommands:hover, #exit:hover {
+    color: #fff;
+}
+
+#machineCommandsMenu {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    top: 19px;
+    left: 0px;
+}
+
+.menuWrapper {
+    border: solid 4px #000;
+    border-top-width: 0;
+    position: relative;
+    white-space: nowrap;
+}
+
+div.menuItem {
+    padding: 4px 8px;
+    cursor: pointer;
+    border: solid 1px transparent;
+}
+
+div.menuItem.selected {
+    border: solid 1px #fff;
+}
+
+div.menuItem.selected:hover {
+    cursor: default;
+}
+
+div.menu div.parent {
+    background-image: url("/images/virtualization-client/Flyout.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-right: 20px;
+}
+
+div.menuItem div.children {
+    position: absolute;
+}
+
+div.menuItem div.children div.menuWrapper {
+    border-top-width: 4px;
+}
+
+
+
+#modalDialog .notification:not(:first-child) {
+    margin-top: 45px;
+}
+
+#modalDialog .notificationDate {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+#modalDialog .notificationBody {
+    font-size: 15px;
+}
+
+#timer {
+    position: absolute;
+    right: 80px;
+}
+
+    #timer.warning {
+        color: #ffff00;
+    }
+
+    #timer.critical {
+        color: #ff3335;
+    }
+
+#exit {
+    position: absolute;
+    right: 6px;
+    font-size:14px;
+    padding:0 6px 0 10px;
+}
+
+#exit:before {
+    content: "\f08c";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+}
+
+#exitMenu {
+    display: none;
+    position: absolute;
+    top: 19px;
+    right: 2px;
+    z-index: 10;
+}
+
+
+
+.childClient #exit {
+    display: none;
+}
+
+.childClient #timer {
+    display: none;
+}
+
+.childClient #notificationsLink {
+    display: none;
+}
+
+.childClient #titleBarRight {
+    left:0;
+    width:100%;
+}
+
+.childClient #machineCommands {
+    left: 6px;
+}
+
+.childClient #displayMenuTitle {
+    left: 36px;
+}
+
+.childClient #developerMenuTitle {
+    left: 72px;
+}
+
+.childClient #miniConnectionImage {
+    right: 10px;
+    left:auto;
+}
+
+.childClient #titleBarLeft {
+    margin-left:45%;
+    margin-right:0;
+    background-color:#000;
+}
+
+.childClient #labNameWrapper {
+    display:none;
+}
+
+.childClient #machineNameWrapper {
+    z-index:2;
+    position:absolute;
+}
+
+.childClient .menuTitle {
+    z-index: 3;
+}
+
+@media (max-width: 600px) {
+    .childClient #titleBarLeft {
+        display: none;
+    }
+}
+
+
+#taskTextZoomWrapper {
+    background-image: url("/images/virtualization-client/Zoom.png?v=2");
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-position: 0 0px;
+    padding-left: 22px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    margin-bottom: 8px;
+}
+
+#taskTextZoom {
+    margin: 0;
+    padding: 0;
+    width: 145px;
+}
+
+#sideBySideResourceZoomWrapper {
+    float: right;
+    background-image: url("/images/virtualization-client/Zoom.png?v=2");
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-position: 0 0px;
+    padding-left: 22px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    margin-bottom: 8px;
+}
+
+#sideBySideResourceList {
+    margin-bottom: 8px;
+}
+
+#sideBySideResourceZoom {
+    margin: 0;
+    padding: 0;
+    width: 130px;
+}
+
+#sideBySideResourceZoomValue {
+    display: inline-block;
+    min-width: 35px;
+}
+
+#sideBySideResourceWrapper {
+    clear: both;
+    width: 100%;
+    background-color: #fff;
+}
+
+#sideBySideResourceFrame {
+    border-style: none;
+    width: 100%;
+    height: 100%;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+}
+
+#sideBySideResourceMask {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#navigationBarResizer {
+    position: absolute;
+    z-index: 1;
+    cursor: ew-resize;
+    width: 6px;
+    height: 100%;
+}
+
+#navigationBar {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 19px;
+    bottom: 62px;
+    width: 250px;
+}
+
+#navigationBarMask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#navigationBarInner {
+    position: absolute;
+    height: 100%;
+    background-color: #000;
+    width: 100%;
+}
+
+#navigationBarScrollable {
+    top: 35px;
+    bottom: 6px;
+    left: 6px;
+    right: 6px;
+    position: absolute;
+    overflow-y: auto;
+}
+
+    #navigationBarScrollable div.mCSB_scrollTools {
+        top: 14px;
+        bottom: 12px;
+        height: auto;
+    }
+
+#navigationBar div.tab {
+    padding: 10px;
+}
+
+#navigationBar select {
+    width: 100%;
+    max-width: 200px;
+}
+
+div.tab div.section {
+    margin-top: 20px;
+}
+
+.sectionList {
+    margin-top: 10px;
+}
+
+table.fields {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.fields td {
+    padding: 1px;
+}
+
+table.fields td.fieldName {
+    opacity: .8;
+    text-align: right;
+    padding-right: 10px;
+    font-size: 90%;
+    vertical-align: bottom;
+}
+
+#tabHeadings {
+    font-size: 16px;
+    height: 35px;
+    margin-left: 6px;
+}
+
+#tabHeadings span.tabHeading {
+    padding: 0 7px;
+    line-height: 35px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#tabHeadings span.tabHeading.selected {
+    cursor: default;
+}
+
+
+
+.unselectable {
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+#navigationBar .bugReportWrapper {
+    margin-top: 20px;
+}
+
+a.bugReport {
+    background-image: url("/images/virtualization-client/Bug.png?v=1");
+    background-repeat: no-repeat;
+    padding-left: 18px;
+    background-size: 14px;
+}
+
+input[type=text], textarea {
+    background-color: #111;
+    border: solid #fff 1px;
+    color: #fff;
+    padding: 6px;
+    outline-color: transparent;
+}
+
+#bugReport input[type=text], #bugReport textarea {
+    box-sizing: border-box;
+}
+
+input[type=button], label.button {
+    border: solid 1px #fff;
+    padding: 4px 8px;
+    cursor: pointer;
+    color: #fff;
+    outline: 0;
+}
+
+div.ui-dialog-buttonset button {
+    outline-color: transparent;
+}
+
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+}
+
+#notification {
+    z-index: 4;
+    width: 250px;
+    height: 200px;
+    position: absolute;
+}
+
+#notificationMask {
+    width: 250px;
+    height: 200px;
+}
+
+#notificationScrollable {
+    position: absolute;
+    border: solid 4px #000;
+    width: 242px;
+    height: 192px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+    #notificationScrollable div.mCSB_scrollTools {
+        top: 8px;
+        bottom: 8px;
+        height: auto;
+    }
+
+#notificationContent {
+    padding: 8px;
+}
+
+
+div.machine, div.contentResource {
+    padding: 8px;
+    border: solid 1px transparent;
+    margin: 0 6px 10px 0;
+    /*max-width: 194px;*/
+}
+
+div.machine.selected, div.contentResource.selected {
+    border-color: #fff;
+}
+
+div.machine:hover, div.contentResource:hover {
+    cursor: pointer;
+    border-color: #fff;
+}
+
+div.machine.selected:hover, div.contentResource.selected:hover {
+    cursor: auto;
+    border-color: #fff;
+}
+
+
+img.thumbnail {
+    max-width: 64px;
+    max-height: 48px;
+    position: absolute;
+}
+
+.contentResource img.thumbnail {
+    max-width: 64px;
+    max-height: 48px;
+}
+
+div.machineName {
+    font-size: 13px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 70px;
+}
+
+div.machineNameCenter {
+    height: 48px;
+    font-weight: bold;
+    display: table;
+    width: 100%;
+}
+
+div.machineInfo {
+}
+
+div.machine .ctrlAltDel {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    padding: 8px 10px;
+}
+
+div.selectHeading {
+    margin: 5px 0 1px 0;
+}
+
+div.machine table.credentials {
+    margin: 8px 0;
+}
+
+div.machine table.credentials td.fieldName {
+    padding-left: 0;
+}
+
+div.cloudCredential {
+    margin: 15px 0;
+}
+
+#tabContent div.cloudCredential h2 {
+    margin-bottom: 3px;
+}
+
+a.loadDeveloperFiles {
+    background-image: url('/images/virtualization-client/Upload-13px.png');
+    background-repeat: no-repeat;
+    padding-left: 16px;
+    background-position: 0 1px;
+}
+
+div.loadDeveloperFilesContainer {
+    margin-top: 3px;
+}
+
+.activityIndicator-s {
+    background-repeat: no-repeat;
+    background-image: url("/images/virtualization-client/spinner-s-black.gif");
+    background-position: 2px 0;
+    padding-left: 22px;
+}
+
+a.detailsLink {
+    background-image: url(/images/virtualization-client/DetailsLink.png);
+    background-repeat: no-repeat;
+    padding-left: 19px;
+}
+
+a.detailsLink-s {
+    background-image: url(/images/virtualization-client/DetailsLink-s.png);
+    background-repeat: no-repeat;
+    padding-left: 14px;
+    font-size: 9px;
+}
+
+div.treeNode {
+    margin: 8px;
+}
+
+div.treeNode span.nodeImage {
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-top: 1px;
+}
+
+    div.treeNode span.nodeImage.closed {
+        background-image: url('/images/virtualization-client/Plus.png');
+    }
+
+    div.treeNode span.nodeImage.open {
+        background-image: url('/images/virtualization-client/Minus.png');
+    }
+
+div.treeNode span.nodeName {
+    cursor: default;
+    border-radius: 2px;
+    padding: 3px;
+    margin-left: 16px;
+}
+
+div.treeNode span.nodeName.selected {
+    background-color: White;
+    color: #000;
+}
+
+div.treeNode span.nodeName:hover {
+    background-color: #666;
+    color: #ffffff;
+}
+
+div.treeNode span.nodeName.selected:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+div.treeNode div.children {
+    margin-left: 10px;
+}
+
+#tabContent a {
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+ul.imageLinksList {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0 0 0 0;
+}
+
+ul.imageLinksList li {
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    padding-left: 20px;
+    margin: 8px 0;
+}
+
+#summaryLinks li:nth-of-type(1) {
+    margin-top: 0;
+}
+
+#resourcesList li.xps {
+    background-image: url("/images/virtualization-client/XpsIcon.png");
+    background-size: 16px 16px;
+}
+
+#resourcesList li.pdf {
+    background-image: url("/images/virtualization-client/PDFIcon.png");
+    background-size: 16px 16px;
+}
+
+#resourcesList li.word {
+    background-image: url("/images/virtualization-client/WordIcon.png");
+    background-size: 16px 16px;
+}
+
+#resourcesList li.file {
+    background-image: url("/images/virtualization-client/FileIcon.png");
+    background-size: 16px 16px;
+}
+
+#resourcesList li.link {
+    background-image: url("/images/virtualization-client/LinkIcon.png");
+    background-size: 16px 16px;
+}
+
+#resourcesList li.manual {
+    background-image: url("/images/virtualization-client/ManualIcon.png");
+    background-size: 16px 16px;
+}
+
+#resourcesList li.faq {
+    background-image: url("/images/virtualization-client/FAQIcon.png");
+    background-size: 16px 16px;
+}
+
+#resourcesList li.image {
+    background-image: url("/images/virtualization-client/ImageIcon.png?v=2");
+    background-size: 16px 16px;
+}
+
+#resourcesList div.description {
+    font-size: 10px;
+}
+
+
+#labIntroduction {
+    background-image: url("/images/virtualization-client/TextIcon.png?v=1");
+}
+
+
+
+#labConsole {height:100%;}
+
+#labConsole div.closeButton {
+    position: absolute;
+    right: -6px;
+    top: -6px;
+    z-index: 5;
+    cursor: pointer;
+    background-image: url("/images/virtualization-client/CloseIcon.png?v=9");
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+#labConsole div.closeButtonBorderBox {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    z-index: 5;
+    cursor: pointer;
+    background-image: url("/images/virtualization-client/CloseIcon.png?v=9");
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+iframe.closeButtonMask {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    width: 14px;
+    height: 14px;
+}
+
+iframe.closeButtonMaskBorderBox {
+    position: absolute;
+    right: -9px;
+    top: -9px;
+    width: 14px;
+    height: 14px;
+}
+
+.openInNewWindowBox {
+    position: absolute;
+    right:0;
+    padding: 10px;
+    background-color: #000;
+    display: none;
+    opacity: .7;
+    filter: progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=70);
+    z-index: 4;
+}
+
+#alertCallout, #ideaCallout, #screenshotCallout, #videoCallout {
+    position: absolute;
+    left: 16px;
+    bottom: -16px;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 20px;
+}
+
+#screenshot {
+    border: solid 4px #000;
+    width: 800px;
+    height: 600px;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 58px;
+    z-index: 4;
+    left: 7px;
+}
+
+#screenshotMask {
+    width: 100%;
+    height: 100%;
+}
+
+#screenshotLoading {
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    position: absolute;
+    left:50%;
+    top:50%;
+    margin-top:-16px;
+    margin-left:-16px;
+}
+
+#screenshotCallout, #videoCallout {
+    bottom: -20px;
+}
+
+#screenshotImage {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#video {
+    border: solid 4px #000;
+    width: 800px;
+    height: 600px;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 58px;
+    z-index: 3;
+    left: 30px;
+}
+
+#videoMask {
+    width: 100%;
+    height: 100%;
+}
+
+#taskVideo {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#taskVideoIFrame {
+    box-sizing: border-box;
+    width: 800px;
+    height: 600px;
+}
+
+#contentWindowConsole {
+    font-size: 1.25em;
+    position: absolute;
+    right: 250px;
+    left: 6px;
+    top: 6px;
+    bottom: 61px;
+    padding: 10px;
+    overflow: auto;
+}
+
+#contentWindowTaskName {
+    font-size: 1.5em;
+}
+
+#contentWindowTaskText {
+    margin: 15px 0;
+}
+
+#contentWindowAlert, #contentWindowIdea {
+    margin: 15px 0;
+    padding: 10px;
+    border: solid 2px #000;
+}
+
+#contentWindowAlertTitle, #contentWindowIdeaTitle {
+    margin-bottom: 10px;
+    line-height: 32px;
+    background-repeat: no-repeat;
+    padding-left: 34px;
+}
+
+#contentWindowAlertTitle {
+    background-image: url("/images/virtualization-client/Alert.png");
+}
+
+#contentWindowIdeaTitle {
+    background-image: url("/images/virtualization-client/Knowledge.png");
+    background-size: 32px;
+}
+
+#contentWindowBottomBar {
+    position: absolute;
+    z-index: 2;
+    background-color: #000;
+    bottom: 0;
+    left: 6px;
+    right: 250px;
+    height: 61px;
+}
+
+#contentWindowBottomBar-l {
+    margin-top: 8px;
+    position: absolute;
+}
+
+#contentWindowBottomBar-r {
+    position: absolute;
+    height: 61px;
+    left: 90px;
+    right: 0;
+}
+
+#contentWindowReturnToCurrentTask {
+    margin: 22px 12px 0 0;
+    text-align: right;
+}
+
+.contentWindowOpenInNewWindow {
+    font-size: 12px;
+    margin: 5px 0 0 5px;
+    padding: 4px;
+    background-color: #000;
+    position: absolute;
+    z-index: 2;
+    right: 5px;
+    padding: 4px 8px;
+}
+
+#tabContent h2.contentHeadingWithTopMargin {
+    margin-top: 12px;
+}
+
+div#modalContent div.content h2:first-of-type {
+    margin-top: 0;
+}
+
+div#modalContent .answer {
+    margin: 2px 0px 2px 0px;
+}
+div#modalContent .answer label {
+    margin-left: 5px;
+}
+div#modalContent .correct label {
+    border-bottom: 2px solid #20c300;
+}
+div#modalContent .answer.incorrect label {
+    border-bottom: 2px solid Red;
+}
+
+div#modalContent .question {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+div#modalContent .question .answers .answer label {
+    padding: 0px 8px 0px 8px;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    border-style: none;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 12px;
+    width: 12px;
+    cursor: pointer;
+}
+
+    input[type=range]::-moz-range-thumb {
+        border-style: none;
+        height: 12px;
+        width: 12px;
+        border-radius: 0;
+        cursor: pointer;
+    }
+
+    input[type=range]::-ms-thumb {
+        border: none;
+        height: 12px;
+        width: 12px;
+        cursor: pointer;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 12px;
+    }
+
+    input[type=range]::-moz-range-track {
+        width: 100%;
+        height: 12px;
+        border-style: none;
+    }
+
+    input[type=range]::-ms-track {
+        width: 100%;
+        height: 12px;
+        border: none;
+        border-color: transparent;
+        color: transparent;
+    }
+
+    input[type=range]:active::-webkit-slider-thumb {
+        background: #fff;
+    }
+
+    input[type=range]:active::-moz-range-thumb {
+        background: #fff;
+    }
+
+    input[type=range]:active::-ms-thumb {
+        background: #fff;
+    }
+
+#remoteControllerLowPerformance {
+    margin-top: 10px;
+    background-size: 16px 16px;
+    background-image: url('/images/virtualization-client/Alert.png');
+    padding-left: 19px;
+    background-repeat: no-repeat;
+}
+
+
+#fullScreenMessageIcon {
+    pointer-events: none;
+    position: absolute;
+    /*bottom: 10px;*/
+    left: -60px;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../images/virtualization-client/IDL_Premium_Logo_W.png');
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: 120px;
+}
+
+.SupportBadge {
+    height: 130px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100px;
+}
+
+.basicSupportBadge {
+    background-image: url('../../images/virtualization-client/IDL_Basic_Logo_W.png');
+}
+
+.premiumSupportBadge {
+    background-image: url('../../images/virtualization-client/IDL_Premium_Logo_W.png');
+}
+
+#contentDialogScreenshot {
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ui-dialog-titlebar button.ui-button {
+    outline:none; /*fixes odd outline around the jquery UI dialog close button (in IDLx virtualization client).*/
+}
+
+#customSupport {
+    margin-top:20px;
+}
+
+#customSupport a {
+    text-decoration: underline;
+}
+
+
+
+
+
+.blinking-cursor {
+    animation-name: blink;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(1,0,0,1);
+    animation-duration: 1s;
+    position: absolute;
+    display: none;
+    width: 2px;
+    height: 16px;
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.vmOnly #exit {
+    display: none;
+}
+
+.vmOnly #timer {
+    display: none;
+}
+
+.vmOnly #notificationsLink {
+    display: none;
+}
+
+.vmOnly #titleBarRight {
+    left: 0;
+    width: 100%;
+}
+
+.vmOnly #machineCommands {
+    left: 6px;
+}
+
+.vmOnly #displayMenuTitle {
+    left: 36px;
+}
+
+.vmOnly #developerMenuTitle {
+    left: 72px;
+}
+
+.vmOnly #miniConnectionImage {
+    right: 10px;
+    left: auto;
+}
+
+.vmOnly #titleBarLeft {
+    margin-left: 45%;
+    margin-right: 0;
+    background-color: #000;
+}
+
+.vmOnly #labNameWrapper {
+    display: none;
+}
+
+.vmOnly #machineNameWrapper {
+    z-index: 2;
+    position: absolute;
+}
+
+.vmOnly .menuTitle {
+    z-index: 3;
+}
+
+@media (max-width: 600px) {
+    .vmOnly #titleBarLeft {
+        display: none;
+    }
+}
+
+.vmOnly #machineSelectMenu {
+    display:none;
+}
+
+
+.loadingAnimation-small {
+    display: inline-block;
+    border: 3px solid #adadad;
+    border-top: 3px solid #fff;
+    border-radius: 50%;
+    width: 6px;
+    height: 6px;
+    animation: spin 1s linear infinite;
+}
+
+.loadingAnimation-medium {
+    display: inline-block;
+    border: 4px solid #adadad;
+    border-top: 4px solid #fff;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    animation: spin 1s linear infinite;
+}
+
+.loadingAnimation-large {
+    display: inline-block;
+    border: 8px solid #adadad;
+    border-top: 8px solid #fff;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.tooltip {
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    right: 10px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 0 5px;
+    border-radius: 6px;
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+}

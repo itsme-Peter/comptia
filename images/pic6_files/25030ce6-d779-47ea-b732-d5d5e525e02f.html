@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<!-- saved from url=(0089)https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10 -->
+<html lang="en-US"><script async="" src="./pendo.js.download"></script><script type="text/javascript">window["_gaUserPrefs"] = { ioo : function() { return true; } }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>05: Assisted Lab: Installing, Using, and Blocking a Malware-based Backdoor</title>
+    <link rel="shortcut icon" href="https://labclient.labondemand.com/images/favicon.ico">
+    <script src="./jquery.min.js(1).download"></script>
+    <script src="./jquery-ui.min.js(1).download"></script>
+    <script src="./showdown.min.js.download"></script>
+    <link rel="stylesheet" type="text/css" href="./prettify.css">
+    <script src="./yaml.min.js.download"></script>
+    <script src="./jquery.timepicker.min.js.download"></script>
+    <link rel="stylesheet" type="text/css" href="./jquery.timepicker.css">
+    <script src="./LocalizeTo(1)" type="text/javascript"></script>
+<script src="./CustomerSupportApp.js.download" type="text/javascript" script-src="" 'self'="" http:="" *="" https:="" 'unsafe-inline'="" 'unsafe-eval'=""></script><script src="./LocalizeTo(2)" type="text/javascript"></script>    <script src="./LocalizeTo(3)" type="text/javascript"></script>
+    <link href="./jquery-ui.css" rel="stylesheet">
+    <link href="./LabClient(1).css" rel="stylesheet" type="text/css">
+    <link id="themeStylesheet" href="./Green(1).css" rel="stylesheet">
+
+<style>
+
+/* Theme - CompTIA Custom Support URL */
+
+
+    .supportChatIcon {
+    display: none;
+    }
+
+   .supportIcon {
+    display: none;
+    }
+
+</style>
+
+<script>
+$(function() {
+
+// Theme - CompTIA Custom Support URL
+
+var a = document.createElement('a');  
+var link = document.createTextNode("Click here to Submit a Support Request."); 
+a.appendChild(link);  
+a.title = "Click here to Submit a Support Request.";  
+a.href = "https://help.comptia.org/hc/en-us/requests/new";
+a.target= '_blank';
+
+ul = document.getElementsByClassName('iconLinksList')[0]
+li = document.createElement("li")
+li.appendChild(a);
+li.setAttribute("class", "newIcon");
+ul.appendChild(li);
+
+var p = document.createElement('p');
+var newText = document.createTextNode("Please include as much detail as possible in your help request, including the lab ID above.");
+p.appendChild(newText);
+ul.appendChild(p)
+
+
+});
+</script>
+
+</head>
+<body class="childClient" data-new-gr-c-s-check-loaded="14.1130.0" data-gr-ext-installed="">
+    <div id="labClient" style="">
+        <div id="header" role="banner">
+            <div id="labName" role="heading" aria-level="1">
+                <span id="instanceName">05: Assisted Lab: Installing, Using, and Blocking a Malware-based Backdoor</span>
+            </div>
+            <div id="timerWrapper"><span id="timer">24 Minutes Remaining</span></div>
+            <div id="topNav">
+                <button id="notificationsButton" class="instructions-iconbutton  role=" button"="" aria-label="Notifications" tabindex="0" aria-haspopup="true" aria-expanded="false" )=""></button>
+                <button id="mainMenuButton" class="instructions-iconbutton" role="button" aria-label="More Options Menu" tabindex="0" aria-expanded="false" title="Menu"></button>
+                <div id="mainMenu" style="display:none;">
+                        <div id="save" tabindex="0" role="button" aria-label="Save" class="menuItem">Save</div>
+                        <div id="exit" tabindex="0" role="button" aria-label="End" class="menuItem">End</div>
+                    <div id="mainMenuExtensions"><div id="splitWindows" tabindex="0" role="button" class="menuItem link-list-item split-windows-link icon-link">Split Windows</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div role="navigation">
+            <div id="tabHeadings" class="noselect" role="tablist">
+                <span tabindex="0" id="tabHolder" style="">
+                        <a tabindex="-1" class="tabHeading selected" aria-selected="true" role="tab" aria-label="Instructions" data-target="instructionsTab" data-id="0">Instructions</a>
+                        <a tabindex="-1" class="tabHeading " aria-selected="false" role="tab" aria-label="Resources" data-target="resourcesTab" data-id="1">Resources</a>
+                        <a tabindex="-1" class="tabHeading " aria-selected="false" role="tab" aria-label="Help" data-target="helpTab" data-id="2">Help</a>
+                </span>
+                <span id="zoomWrapper" style="">
+                    <input type="range" id="zoom" min="50" max="400" value="100" step="10" aria-label="Zoom" title="Zoom" aria-valuemin="50" aria-valuemax="400" aria-valuenow="100">
+                    <span id="zoomValue" style="display:inline-block; vertical-align: top; padding-top:3px; min-width:30px;">100%</span>
+                </span>
+            </div>
+        </div>
+
+        <div id="tabs" role="main">
+            <div id="instructionsTab" class="tab selected">
+                <div id="instructionsContent" class="tabContent withFooter instructions withTaskProgress withNavigation" aria-label="Lab Instructions">
+                    <div class="zoomable" id="pages"><div class="page" id="page0"><h1 id="assisted-lab-05-installing-using-and-blocking-a-malware-based-backdoor">Assisted Lab 05: Installing, Using, and Blocking a Malware-based Backdoor</h1>
+<h2 id="scenario">Scenario</h2>
+<p>In this activity, you will disable Windows Defender, leaving a server vulnerable. You will then simulate the accidental installation of malware and view the changes. You will take on the role of a pen tester or hacker, and determine whether the malware was installed based on open network ports. Next, you'll connect to the infected server, proving you having the ability to exploit it. Finally, in the role of security administrator, you will remove the malware.</p>
+<h2 id="objectives">Objectives</h2>
+<p>This activity is designed to test your understanding of and ability to apply content examples in the following CompTIA Security+ objectives: </p>
+<ul>
+<li>1.2 Given a scenario, analyze potential indicators to determine the type of attack. </li>
+</ul>
+</div><div class="page" id="page1">
+<h2 id="disable-windows-defender">Disable Windows Defender</h2>
+<p>In the first part of this activity, you will disable Windows Defender protection, leaving the server vulnerable to malware.</p>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex0"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex0"><span></span></label> Select the <a href="https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10#" class="selectMachineLink icon-link special-action-link" data-data="127488">MS1</a> VM, select <a href="https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10#" class="ctrlAltDeleteLink icon-link special-action-link">Ctrl+Alt+Delete</a>, then at the login screen, in the Password box, type <span class="typeText" title="Type Text" tabindex="0" role="button">Pa$$w0rd</span> and press <strong>ENTER</strong>. </p></li>
+<li class="task-list-item" id="taskIndex1"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex1"><span></span></label> Select <strong>Start</strong>, and right-click <strong>Windows PowerShell</strong> and select <strong>Run as Administrator</strong>.</p></li>
+<li class="task-list-item" id="taskIndex2"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex2"><span></span></label> When prompted, select <strong>Yes</strong> to confirm the UAC. </p></li>
+<li class="task-list-item" id="taskIndex3"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex3"><span></span></label> Type the following command, then press <strong>ENTER</strong>: </p>
+<pre><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="typ">Set</span><span class="pun">-</span><span class="typ">MpPreference</span><span class="pln"> </span><span class="pun">-</span><span class="typ">DisableRealTimeMonitoring</span><span class="pln"> $True</span></code></pre>
+<p>This PowerShell cmdlet disables Windows Defender online scanning. </p></li>
+<li class="task-list-item" id="taskIndex4"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex4"><span></span></label> Close the PowerShell window. </p></li>
+</ol>
+</div><div class="page" id="page2">
+<h2 id="install-program-from-odysseusiso">Install program from Odysseus.iso</h2>
+<p>Pretend that you are installing the program on the Odysseus.iso disc image, thinking that it is a legitimate piece of software. Insert the disc image and use its autoplay settings to start the installation. </p>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex5"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex5"><span></span></label> Select <a href="https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10#" class="loadMediaLink opticalMedia icon-link special-action-link" data-data="11733">ODYSSEUS</a> to load the ISO image in the current VM. </p></li>
+<li class="task-list-item" id="taskIndex6"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex6"><span></span></label> In the <a href="https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10#" class="selectMachineLink icon-link special-action-link" data-data="127488">MS1</a> VM window, click the notification and then select <strong>Run setup.exe</strong> (it may take up to one minute for the notification to appear). </p>
+<blockquote class="note">
+  <p>If you don't see the notification pop-up, right click on Start, Run and type <strong>d:\setup.exe</strong> then Enter.</p>
+</blockquote>
+<p>A User Account Control (UAC) warning is shown because a setup.exe process is trying to execute. The process' image file is unsigned (the publisher is listed as unknown). </p></li>
+<li class="task-list-item" id="taskIndex7"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex7"><span></span></label> If necessary, select <strong>Show more details</strong>. Note that the install script is set to run in silent mode. </p></li>
+<li class="task-list-item" id="taskIndex8"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex8"><span></span></label> You would not normally proceed, but for this activity, select <strong>Yes</strong>. </p></li>
+<li class="task-list-item" id="taskIndex9"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex9"><span></span></label> The installer runs silently, with no visible window. When installation is complete, you will see two new icons on the desktop. Open either of the <strong>SimpleHash</strong> or <strong>SimpleSalter</strong> shortcuts from the desktop. </p></li>
+<li class="task-list-item" id="taskIndex10"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex10"><span></span></label> Close the utility window. </p></li>
+</ol>
+</div><div class="page" id="page3">
+<h2 id="identify-system-changes">Identify system changes</h2>
+<p>The program seems to have installed two innocuous utilities, but what else might have changed on the computer? Use Task Manager to identify unauthorized system changes. </p>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex11"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex11"><span></span></label> Right-click the taskbar and select <strong>Task Manager</strong>. If necessary, select <strong>More details</strong> to view the full interface. Inspect the list of processes. Can you spot anything unusual? </p></li>
+<li class="task-list-item" id="taskIndex12"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex12"><span></span></label> </p><div class="activity" data-alias="Question2" data-index="0"><div class="questionText"><p>What process seems suspicious?</p></div><div class="answers"><div class="answer" data-id="20417"><label><input type="radio" name="question27272-0">ncat (32 bit)</label></div><div class="answer" data-id="20418"><label><input type="radio" name="question27272-0">Microsoft OneDrive (32 bit)</label></div><div class="answer" data-id="20419"><label><input type="radio" name="question27272-0">Spooler SubSystem App</label></div><div class="answer" data-id="20420"><label><input type="radio" name="question27272-0">RDP Clipboard Monitor</label></div></div><div><input type="button" class="evaluate primary" value="Score"><span class="loading loadingAnimation-medium" style="display: none;"></span></div><div class="feedbackHolder" id="feedbackHolderQuestion2" role="status"><div class="feedback positive" style="" aria-label="Correct"><p>Correct</p></div></div></div><p></p>
+<blockquote class="alert">
+  <p>The purpose behind Assisted Labs is to confirm your knowledge and guide you through the given configurations. If you get a scored question incorrect, you may repeat the question and achieve the correct answer. You do not need a correct answer to move forward through the lab.</p>
+</blockquote>
+<p></p><details>
+<summary>Task Manager.</summary>
+
+<img src="./Screen Shot 2020-11-07 at 9.41.24 AM.png" alt="Task Manager and the ncat (32 bit) process">
+Ncat is a well-known attack tool. When searching for suspicious processes, filter out known Windows porcesses (unless they are typospoofed) and investigate the exceptions. Note that the hMailServer process is a legitimate third-party application for this server role.
+</details><p></p></li>
+<li class="task-list-item" id="taskIndex13"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex13"><span></span></label> </p><div class="activity" data-alias="Automated1" data-index="0"><div class="taskListEvalButtonTop"></div><div class="scriptTaskList primary-color-low-opacity-border"><div class="scriptTask pass" data-id="12247" aria-label="Correct"><div class="status"><span class="running loadingAnimation-medium"></span><span class="result"></span></div><div class="taskText"><p>Confirm that the malware has been installed by verifying that ncat.exe is running in the process list.</p></div><div role="status" id="responseHolder" 12247=""><div class="response" style=""><div class="textResponse"><p>Correct</p></div></div></div></div></div><div class="taskListEvalButtonBottom"><div><input type="button" class="evaluate primary" value="Score"><span class="loading loadingAnimation-medium" style="display:none;"></span></div><div class="feedbackHolder" id="feedbackHolderAutomated1" role="status"><div class="feedback" style="display:none"></div></div></div></div><p></p>
+<blockquote class="hint">
+  <p>You need a good understanding of what should be running or is authorized on your hosts and network to have a better chance of spotting what should not be there. The more authorized software and ports you allow, the harder the job of spotting the bad stuff becomes, especially when it comes to training new security staff. This is one of the reasons the principle of running only necessary services is so important. </p>
+</blockquote></li>
+<li class="task-list-item" id="taskIndex14"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex14"><span></span></label> Close <strong>Task Manager</strong>.</p></li>
+</ol>
+</div><div class="page selected" id="page4">
+<h2 id="identify-network-ports">Identify network ports</h2>
+<p>The Odysseus software has installed a backdoor application called Netcat on the computer. This runs with the privileges of the logged-on user (currently Administrator) and allows a remote machine to access the command prompt on MS1. Use the DC1 VM to run a posture assessment and see if the backdoor can be discovered. To discover the port that the backdoor is listening on, you can use a network scanner called <strong>Angry IP Scanner</strong> (<a class="portalLink icon-link external-link icon-link" href="http://angryip.org/" target="_blank">angryip.org</a>). </p>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex15"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex15"><span></span></label> Switch to the <a href="https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10#" class="selectMachineLink icon-link special-action-link" data-data="127486">DC1</a> VM.</p></li>
+<li class="task-list-item" id="taskIndex16"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex16"><span></span></label> Click <a href="https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10#" class="ctrlAltDeleteLink icon-link special-action-link">Ctrl+Alt+Delete</a> to send the Ctrl+Alt+Delete sequence to the VM and show the login page. Sign in as <span class="typeText" title="Type Text" tabindex="0" role="button">515support\Administrator</span> using <span class="typeText" title="Type Text" tabindex="0" role="button">Pa$$w0rd</span> as the password.</p></li>
+<li class="task-list-item" id="taskIndex17"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex17"><span></span></label> From the desktop, open the <strong>AngryIP</strong> shortcut.</p></li>
+<li class="task-list-item" id="taskIndex18"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex18"><span></span></label> In the IP Range: boxes type <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="lit">10.1</span><span class="pun">.</span><span class="lit">0.2</span></code> (you will do this in both boxes) to target the <strong>MS1</strong> virtual machine.</p></li>
+<li class="task-list-item" id="taskIndex19"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex19"><span></span></label> Select the <strong>Preferences</strong> icon to open the Preferences dialog box. </p></li>
+<li class="task-list-item" id="taskIndex20"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex20"><span></span></label> Select the <strong>Ports</strong> tab and enter <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="lit">1</span><span class="pun">-</span><span class="lit">1024</span><span class="pun">,</span><span class="lit">4400</span><span class="pun">-</span><span class="lit">4500</span></code> in the Port selection box. Select <strong>OK</strong>. </p>
+<p></p><details>
+<summary>Configuring AngryIP scanner</summary>
+
+<img src="./Screen Shot 2020-11-07 at 9.45.49 AM.png" alt="Configuring AngryIP scanner">
+</details><p></p></li>
+<li class="task-list-item" id="taskIndex21"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex21"><span></span></label> Select <strong>Start</strong> to begin the scan.</p>
+<p>The scan takes about one minute. </p></li>
+<li class="task-list-item" id="taskIndex22"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex22"><span></span></label> When the scan is complete, select <strong>Close</strong>. </p></li>
+<li class="task-list-item" id="taskIndex23"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex23"><span></span></label> Look at the open ports on the MS1 VM—how many of them can you identify? </p></li>
+<li class="task-list-item" id="taskIndex24"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex24"><span></span></label> </p><div class="activity" data-alias="Question3" data-index="0"><div class="questionText"><p>Which port is associated with the trojan?</p></div><div class="answers"><div class="answer" data-id="20421"><label><input type="radio" name="question27273-0">22</label></div><div class="answer" data-id="20422"><label><input type="radio" name="question27273-0">80</label></div><div class="answer" data-id="20423"><label><input type="radio" name="question27273-0">443</label></div><div class="answer" data-id="20424"><label><input type="radio" name="question27273-0">445</label></div><div class="answer" data-id="20444"><label><input type="radio" name="question27273-0">4450</label></div></div><div><input type="button" class="evaluate primary" value="Score"><span class="loading loadingAnimation-medium" style="display:none;"></span></div><div class="feedbackHolder" id="feedbackHolderQuestion3" role="status"></div></div><p></p>
+<p></p><details>
+<summary>Well-known port numbers</summary>
+You should recognize these well-known ports: <p></p>
+<blockquote>
+  <ul>
+  <li>80—HTTP.</li>
+  <li>135, 139, 445—RPC/NetBIOS/SMB.</li>
+  <li>25, 143, 587—email (SMTP, IMAP, and SMTP).</li></ul>
+</blockquote>
+<p>Do you see any port numbers that are not accounted for here and might therefore be suspicious?
+</p></details><p></p></li>
+<li class="task-list-item" id="taskIndex25"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex25"><span></span></label> Close the <strong>Angry IP Scanner</strong> window. </p></li>
+</ol>
+</div><div class="page" id="page5">
+<h2 id="test-backdoor">Test backdoor</h2>
+<p>To connect to the backdoor on MS1, you will use a terminal emulation client called <strong>PuTTY</strong> (<a class="portalLink icon-link external-link icon-link" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank">chiark.greenend.org.uk</a>). </p>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex26"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex26"><span></span></label> On the <a href="https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10#" class="selectMachineLink icon-link special-action-link" data-data="127486">DC1</a> VM, double-click the <strong>PuTTY</strong> icon in the <strong>LABFILES</strong> folder. </p></li>
+<li class="task-list-item" id="taskIndex27"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex27"><span></span></label> In the Host name (or IP address) box, type <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="lit">10.1</span><span class="pun">.</span><span class="lit">0.2</span></code>. In the Port box, enter <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="lit">4450</span></code>. Set the Connection type to <strong>Raw</strong>. </p>
+<p></p><details>
+<summary>PuTTY configurations</summary>
+
+<img src="./Screen Shot 2020-11-07 at 9.50.22 AM.png" alt="Screen Shot 2020-11-07 at 9.50.22 AM.png">
+</details><p></p></li>
+<li class="task-list-item" id="taskIndex28"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex28"><span></span></label> In the Saved Sessions box, type <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">MS1</span></code> then select the <strong>Save</strong> button. </p></li>
+<li class="task-list-item" id="taskIndex29"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex29"><span></span></label> Select <strong>Open</strong>. After a few seconds, you will be connected to the command prompt on MS1.</p>
+<blockquote class="hint">
+  <p>If the connection does not display a <strong>C:\ </strong> prompt, it is not successful. Confirm the above steps in the following order: 1) Defender is disabled, 2) Port 4450 is specified in Putty (as is the correct IP address of 10.1.0.2 and connect type: RAW)</p>
+</blockquote>
+<p>
+<img src="./Screen Shot 2020-11-07 at 9.54.04 AM.png" alt="Screen Shot 2020-11-07 at 9.54.04 AM.png"></p></li>
+<li class="task-list-item" id="taskIndex30"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex30"><span></span></label> In the putty terminal window, run the following three commands to confirm your remote connection: </p>
+<p><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">whoami</span></code></p>
+<p><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">hostname</span></code></p>
+<p><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">ipconfig</span></code></p></li>
+<li class="task-list-item" id="taskIndex31"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex31"><span></span></label> Run the following command to create a user account named <strong>mal</strong> on the remote server:</p>
+<p><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">net user </span><span class="pun">/</span><span class="kwd">add</span><span class="pln"> mal </span><span class="typ">Pa$$w0rd</span></code></p></li>
+<li class="task-list-item" id="taskIndex32"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex32"><span></span></label> </p><div class="activity" data-alias="Automated2" data-index="0"><div class="taskListEvalButtonTop"></div><div class="scriptTaskList primary-color-low-opacity-border"><div class="scriptTask" data-id="12248"><div class="status"><span class="running loadingAnimation-medium"></span><span class="result"></span></div><div class="taskText"><p>Confirm that the "mal" local user account exists.</p></div><div role="status" id="responseHolder" 12248=""><div class="response" style="display:none;"></div></div></div></div><div class="taskListEvalButtonBottom"><div><input type="button" class="evaluate primary" value="Score"><span class="loading loadingAnimation-medium" style="display:none;"></span></div><div class="feedbackHolder" id="feedbackHolderAutomated2" role="status"></div></div></div><p></p>
+<blockquote class="alert">
+  <p>Many of your tasks are scored by scripts. You must use the same names and other labels as the lab instructions specify or your task may be marked as incorrect. For example, if the task says to create a user account named “user01,” than “user1” would be marked as incorrect.</p>
+</blockquote>
+<blockquote class="hint">
+  <p>Practice typing in the commands manually to help you learn and remember the syntax. </p>
+</blockquote></li>
+<li class="task-list-item" id="taskIndex33"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex33"><span></span></label> Run the following command to add the <strong>mal</strong> user to the local administrators group:</p>
+<p><code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">net localgroup administrators mal </span><span class="pun">/</span><span class="kwd">add</span></code></p></li>
+<li class="task-list-item" id="taskIndex34"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex34"><span></span></label> </p><div class="activity" data-alias="Automated3" data-index="0"><div class="taskListEvalButtonTop"></div><div class="scriptTaskList primary-color-low-opacity-border"><div class="scriptTask" data-id="12249"><div class="status"><span class="running loadingAnimation-medium"></span><span class="result"></span></div><div class="taskText"><p>Confirm that user "mal" is a member of the local administrators group.</p></div><div role="status" id="responseHolder" 12249=""><div class="response" style="display:none;"></div></div></div></div><div class="taskListEvalButtonBottom"><div><input type="button" class="evaluate primary" value="Score"><span class="loading loadingAnimation-medium" style="display:none;"></span></div><div class="feedbackHolder" id="feedbackHolderAutomated3" role="status"></div></div></div><p></p>
+<p></p><details>
+<summary>Issues with the mal user account.</summary>
+If the user or group is not found, or if the user is not part of the administrators group, then repeat the two commands above. 
+</details><p></p>
+<p>Creating a user account is one way for a threat actor to establish a persistence mechanism and re-connect to the target network or host.</p></li>
+<li class="task-list-item" id="taskIndex35"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex35"><span></span></label> Leave the <strong>PuTTY</strong> window open.</p></li>
+</ol>
+</div><div class="page" id="page6">
+<h2 id="block-backdoor">Block backdoor</h2>
+<p>Use Task Manager and the Windows Defender to investigate the changes that the Trojan has made.  </p>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex36"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex36"><span></span></label> Switch to the <a href="https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10#" class="selectMachineLink icon-link special-action-link" data-data="127488">MS1</a> VM and, if necessary, use <a href="https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10#" class="ctrlAltDeleteLink icon-link special-action-link">Ctrl+Alt+Delete</a> to sign back in as <span class="typeText" title="Type Text" tabindex="0" role="button">515support\Administrator</span> with password <span class="typeText" title="Type Text" tabindex="0" role="button">Pa$$w0rd</span>. </p>
+<blockquote class="hint">
+  <p>If a Windows Script Host error appears, click <strong>OK</strong>. There may also be a Windows Defender notification.</p>
+</blockquote></li>
+<li class="task-list-item" id="taskIndex37"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex37"><span></span></label> Using <strong>File Explorer</strong>, browse to <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">C</span><span class="pun">:</span><span class="pln">\Program </span><span class="typ">Files</span><span class="pln"> </span><span class="pun">(</span><span class="pln">x86</span><span class="pun">)</span><span class="pln">\Odysseus</span></code> and note the ini.vbs file.</p></li>
+<li class="task-list-item" id="taskIndex38"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex38"><span></span></label> Open <strong>ini.vbs</strong> in Notepad (right-click and select <strong>Edit</strong>). Note the actions that the script performs. </p>
+<p></p><details>
+<summary>Ini script.</summary>
+This script launches netcat and creates a firewall rule to allow connections to it over port 4450.
+</details><p></p></li>
+<li class="task-list-item" id="taskIndex39"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex39"><span></span></label> Close the script file, and then use <strong>File Explorer</strong> to delete it. </p></li>
+<li class="task-list-item" id="taskIndex40"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex40"><span></span></label> Open <strong>Task Manager</strong>.</p></li>
+<li class="task-list-item" id="taskIndex41"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex41"><span></span></label> Select the <strong>Processes</strong> tab in <strong>Task Manager</strong>, and then right-click on the <strong>ncat (32 bit)</strong> process and select <strong>End task</strong>.</p>
+<blockquote class="hint">
+  <p>You can alphabetize the process list by clicking the <em>Name</em> column at the top.</p>
+</blockquote></li>
+<li class="task-list-item" id="taskIndex42"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex42"><span></span></label> Close <strong>Task Manager</strong>.</p></li>
+<li class="task-list-item" id="taskIndex43"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex43"><span></span></label> Select <strong>Start</strong> then type <code class="prettyprint prettyprinted" tabindex="0" style=""><span class="pln">firewall </span><span class="kwd">with</span><span class="pln"> advanced security</span></code> and open the <strong>Windows Defender Firewall with Advanced Security</strong> link that appears. </p></li>
+<li class="task-list-item" id="taskIndex44"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex44"><span></span></label> Select the <strong>Inbound Rules</strong> node. Can you spot anything unusual that might be related to the <strong>ncat</strong> backdoor that was installed? </p></li>
+<li class="task-list-item" id="taskIndex45"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex45"><span></span></label> </p><div class="activity" data-alias="Question4" data-index="0"><div class="questionText"><p>What is the name of the firewall rule associated with the trojan?</p></div><div class="answers"><div class="answer" data-id="20425"><label><input type="radio" name="question27274-0">Rule 42</label></div><div class="answer" data-id="20428"><label><input type="radio" name="question27274-0">netcat</label></div><div class="answer" data-id="20429"><label><input type="radio" name="question27274-0">PuTTY</label></div><div class="answer" data-id="20426"><label><input type="radio" name="question27274-0">ncat</label></div><div class="answer" data-id="20427"><label><input type="radio" name="question27274-0">Service Port</label></div></div><div><input type="button" class="evaluate primary" value="Score"><span class="loading loadingAnimation-medium" style="display:none;"></span></div><div class="feedbackHolder" id="feedbackHolderQuestion4" role="status"></div></div><p></p>
+<p></p><details>
+<summary>The Inbound Rules.</summary>
+
+<img src="./Screen Shot 2020-11-07 at 9.58.43 AM.png" alt="Inbound Rules">
+</details><p></p></li>
+<li class="task-list-item" id="taskIndex46"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex46"><span></span></label> Disable the rule added by the Trojan by right-clicking it and selecting <strong>Disable Rule</strong>. </p></li>
+<li class="task-list-item" id="taskIndex47"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex47"><span></span></label> </p><div class="activity" data-alias="Automated4" data-index="0"><div class="taskListEvalButtonTop"></div><div class="scriptTaskList primary-color-low-opacity-border"><div class="scriptTask" data-id="12250"><div class="status"><span class="running loadingAnimation-medium"></span><span class="result"></span></div><div class="taskText"><p>Confirm that the firewall blocks connections over port 4450.</p></div><div role="status" id="responseHolder" 12250=""><div class="response" style="display:none;"></div></div></div></div><div class="taskListEvalButtonBottom"><div><input type="button" class="evaluate primary" value="Score"><span class="loading loadingAnimation-medium" style="display:none;"></span></div><div class="feedbackHolder" id="feedbackHolderAutomated4" role="status"></div></div></div><p></p></li>
+<li class="task-list-item" id="taskIndex48"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex48"><span></span></label> </p><div class="activity" data-alias="Automated5" data-index="0"><div class="taskListEvalButtonTop"></div><div class="scriptTaskList primary-color-low-opacity-border"><div class="scriptTask" data-id="12251"><div class="status"><span class="running loadingAnimation-medium"></span><span class="result"></span></div><div class="taskText"><p>Confirm that you have deleted the ini.vbs file.</p></div><div role="status" id="responseHolder" 12251=""><div class="response" style="display:none;"></div></div></div></div><div class="taskListEvalButtonBottom"><div><input type="button" class="evaluate primary" value="Score"><span class="loading loadingAnimation-medium" style="display:none;"></span></div><div class="feedbackHolder" id="feedbackHolderAutomated5" role="status"></div></div></div><p></p></li>
+<li class="task-list-item" id="taskIndex49"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex49"><span></span></label> </p><div class="activity" data-alias="Automated6" data-index="0"><div class="taskListEvalButtonTop"></div><div class="scriptTaskList primary-color-low-opacity-border"><div class="scriptTask" data-id="12252"><div class="status"><span class="running loadingAnimation-medium"></span><span class="result"></span></div><div class="taskText"><p>Confirm that the malware has been removed by verifying that ncat.exe is no longer running in the process list.</p></div><div role="status" id="responseHolder" 12252=""><div class="response" style="display:none;"></div></div></div></div><div class="taskListEvalButtonBottom"><div><input type="button" class="evaluate primary" value="Score"><span class="loading loadingAnimation-medium" style="display:none;"></span></div><div class="feedbackHolder" id="feedbackHolderAutomated6" role="status"></div></div></div><p></p>
+<p></p><details>
+<summary>Remove the malware</summary>
+If one or more of the above check fails, repeat the steps to ensure that you deleted the .ini file, stopped the netcat (32 bit) process, and disabled the firewall rule pertaining to the Service Port.
+</details><p></p>
+<p>This Trojan is trivially easy to block and remove, but most malware is more sophisticated. </p></li>
+</ol>
+</div><div class="page" id="page7">
+<h2 id="comprehensive-questions">Comprehensive questions</h2>
+<p>Answer the following final comprehensive question to ensure that you recognize the importance of the activity steps and the uses for the information you have learned.</p>
+<ol class="taskList">
+<li class="task-list-item" id="taskIndex50"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex50"><span></span></label> </p><div class="activity" data-alias="Question5" data-index="0"><div class="questionText"><p>What three tasks did you accomplish to block access to the malware? (Choose three)</p></div><div class="answers"><div class="answer" data-id="20430"><label><input type="checkbox">Deleted the ini.vbs file.</label></div><div class="answer" data-id="20432"><label><input type="checkbox">Closed the 4450 port.</label></div><div class="answer" data-id="20431"><label><input type="checkbox">Deleted the ncat.vbs file.</label></div><div class="answer" data-id="20434"><label><input type="checkbox">Stopped the ncat service in the Services console.</label></div><div class="answer" data-id="20433"><label><input type="checkbox">Opened the 4450 port.</label></div><div class="answer" data-id="20435"><label><input type="checkbox">Stopped the ncat process in the Task Manager console.</label></div></div><div><input type="button" class="evaluate primary" value="Score"><span class="loading loadingAnimation-medium" style="display:none;"></span></div><div class="feedbackHolder" id="feedbackHolderQuestion5" role="status"></div></div><p></p></li>
+<li class="task-list-item" id="taskIndex51"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex51"><span></span></label> </p><div class="activity" data-alias="Question6" data-index="0"><div class="questionText"><p>How did the ncat malware get installed?</p></div><div class="answers"><div class="answer" data-id="20436"><label><input type="radio" name="question27282-0">The malware was downloaded from the Internet.</label></div><div class="answer" data-id="20437"><label><input type="radio" name="question27282-0">The malware was delivered as an email attachment.</label></div><div class="answer" data-id="20438"><label><input type="radio" name="question27282-0">The malware was installed by a hacker with physical access to the server.</label></div><div class="answer" data-id="20439"><label><input type="radio" name="question27282-0">An administrator was tricked into installing malware concealed as utility software.</label></div></div><div><input type="button" class="evaluate primary" value="Score"><span class="loading loadingAnimation-medium" style="display:none;"></span></div><div class="feedbackHolder" id="feedbackHolderQuestion6" role="status"></div></div><p></p></li>
+<li class="task-list-item" id="taskIndex52"><p><label class="checkbox"><input type="checkbox" aria-labelledby="taskIndex52"><span></span></label> </p><div class="activity" data-alias="Question7" data-index="0"><div class="questionText"><p>Why is it useful to know the common port numbers?</p></div><div class="answers"><div class="answer" data-id="20442"><label><input type="radio" name="question27283-0">Required for TCP/IP network configuration.</label></div><div class="answer" data-id="20443"><label><input type="radio" name="question27283-0">Helps to identify common Transport layer protocols.</label></div><div class="answer" data-id="20440"><label><input type="radio" name="question27283-0">Easier to identify protocols that are not standard to your network.</label></div><div class="answer" data-id="20441"><label><input type="radio" name="question27283-0">Required for network port authentication.</label></div></div><div><input type="button" class="evaluate primary" value="Score"><span class="loading loadingAnimation-medium" style="display:none;"></span></div><div class="feedbackHolder" id="feedbackHolderQuestion7" role="status"></div></div><p></p></li>
+</ol>
+</div><div class="page" id="page8">
+<h2 id="grade-lab">Grade Lab</h2>
+<p>That concludes this lab. Please ensure you end it properly rather than just closing the browser window.</p>
+<ol>
+<li>Select <strong>Submit</strong> below to grade the lab and then <strong>Yes</strong> to submit for grading. Once you have submitted for grading, you will not be able to return to the lab environment.</li>
+</ol></div></div>
+                </div>
+                <div id="instructionsFooter">
+                    <div id="taskProgressBar" class="progressBar" style="" title="15/53 (28%) Tasks Complete">
+                        <div id="taskProgressText" class="progressText">28% Tasks Complete</div>
+                        <div id="taskProgress" class="progress" style="width: 28%;"></div>
+                    </div>
+                    <div id="instructionsNavigation" role="navigation" aria-label="Previous/Next">
+                        <span id="previous" tabindex="0" role="button" class="noselect" title="Previous: Identify system changes">Previous</span>
+                        <span id="next" tabindex="0" role="button" class="noselect" title="Next: Test backdoor">Next: Test backdoor</span>
+                    </div>
+                </div>
+            </div>
+            <div id="resourcesTab" class="tab  resources">
+                <div class="tabContent">
+                    <div class="zoomable">
+                        <div id="cloudCredentials"></div>
+                        <div id="cloudResources"></div>
+                        <div id="resourcesExtensions"><div class="machine hoverColor selectedColor activeColor accent-background selected" id="machine127486"><img alt="Thumbnail screenshot of virtual machineLab34495175-DC1" class="thumbnail" src="./saved_resource">
+            <div class="machineNameCenter">
+                <div class="machineName">DC1</div>
+            </div>
+            <div class="inputRelease">
+                To release mouse, press <strong>Ctrl+Alt+Left Arrow</strong>
+            </div>
+            <div class="machineInfo" style="">
+                <table class="credentials fields">
+                    <tbody><tr>
+                        <td class="fieldName">Username</td>
+                        <td><span class="typeText username" title="Type Text" role="button" tabindex="0" aria-description="DC1 Type Text Username">515support\Administrator</span></td>
+                    </tr>
+                    <tr>
+                        <td class="fieldName">Password</td>
+                        <td><span class="typeText password" title="Type Text" role="button" tabindex="0" aria-description="DC1 Type Text Password">Pa$$w0rd</span></td>
+                    </tr>
+                </tbody></table>
+                <div class="floppyDrive" style="display: none;">
+                </div>
+                <div class="dvdDrive">
+                    <div class="dvdDriveInner">
+                        <div class="selectHeading">DVD Drive</div>
+                        <select>
+                            <option value="-2">No Media</option>
+                                <option value="11733">ODYSSEUS</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="networkAdapters"><div class="networkAdapter" data-id="202991">
+            <div class="selectHeading name">Ethernet</div>
+            <select>
+                <option value="-1">Not Connected</option>
+                    <option value="98494">vLOCAL</option>
+                    <option value="98550">vISP</option>
+                    <option value="98551">vINT00</option>
+                    <option value="98552">vINT01</option>
+                    <option value="98553">vINT02</option>
+            </select>
+        </div></div>
+                <input type="button" class="ctrlAltDel ctrl-alt-del-button" value="Ctrl+Alt+Delete">
+                    <a class="openInNewWindow open-in-new-window-link icon-link" href="https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10#">Open in new window</a>
+            </div>
+        </div><div class="machine hoverColor selectedColor activeColor accent-background" id="machine127487"><img alt="Thumbnail screenshot of virtual machineLab34495175-RT1-LOCAL" class="thumbnail" src="./saved_resource(1)">
+            <div class="machineNameCenter">
+                <div class="machineName">RT1-LOCAL</div>
+            </div>
+            <div class="inputRelease">
+                To release mouse, press <strong>Ctrl+Alt+Left Arrow</strong>
+            </div>
+            <div class="machineInfo" style="display: none;">
+                <table class="credentials fields">
+                    <tbody><tr>
+                        <td class="fieldName">Username</td>
+                        <td><span class="typeText username" title="Type Text" role="button" tabindex="0" aria-description="RT1-LOCAL Type Text Username">vyos</span></td>
+                    </tr>
+                    <tr>
+                        <td class="fieldName">Password</td>
+                        <td><span class="typeText password" title="Type Text" role="button" tabindex="0" aria-description="RT1-LOCAL Type Text Password">Pa$$w0rd</span></td>
+                    </tr>
+                </tbody></table>
+                <div class="floppyDrive">
+                </div>
+                <div class="dvdDrive">
+                    <div class="dvdDriveInner">
+                        <div class="selectHeading">DVD Drive</div>
+                        <select>
+                            <option value="-2">No Media</option>
+                                <option value="11733">ODYSSEUS</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="networkAdapters"><div class="networkAdapter" data-id="202993">
+            <div class="selectHeading name">eth0</div>
+            <select>
+                <option value="-1">Not Connected</option>
+                    <option value="98494">vLOCAL</option>
+                    <option value="98550">vISP</option>
+                    <option value="98551">vINT00</option>
+                    <option value="98552">vINT01</option>
+                    <option value="98553">vINT02</option>
+            </select>
+        </div></div>
+                <input type="button" class="ctrlAltDel ctrl-alt-del-button" value="Ctrl+Alt+Delete">
+                    <a class="openInNewWindow open-in-new-window-link icon-link" href="https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10#">Open in new window</a>
+            </div>
+        </div><div class="machine hoverColor selectedColor activeColor accent-background" id="machine127488"><img alt="Thumbnail screenshot of virtual machineLab34495175-MS1" class="thumbnail" src="./saved_resource(2)">
+            <div class="machineNameCenter">
+                <div class="machineName">MS1</div>
+            </div>
+            <div class="inputRelease">
+                To release mouse, press <strong>Ctrl+Alt+Left Arrow</strong>
+            </div>
+            <div class="machineInfo" style="display: none;">
+                <table class="credentials fields">
+                    <tbody><tr>
+                        <td class="fieldName">Username</td>
+                        <td><span class="typeText username" title="Type Text" role="button" tabindex="0" aria-description="MS1 Type Text Username">515support\Administrator</span></td>
+                    </tr>
+                    <tr>
+                        <td class="fieldName">Password</td>
+                        <td><span class="typeText password" title="Type Text" role="button" tabindex="0" aria-description="MS1 Type Text Password">Pa$$w0rd</span></td>
+                    </tr>
+                </tbody></table>
+                <div class="floppyDrive" style="display: none;">
+                </div>
+                <div class="dvdDrive">
+                    <div class="dvdDriveInner">
+                        <div class="selectHeading">DVD Drive</div>
+                        <select>
+                            <option value="-2">No Media</option>
+                                <option value="11733">ODYSSEUS</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="networkAdapters"><div class="networkAdapter" data-id="202995">
+            <div class="selectHeading name">Ethernet</div>
+            <select>
+                <option value="-1">Not Connected</option>
+                    <option value="98494">vLOCAL</option>
+                    <option value="98550">vISP</option>
+                    <option value="98551">vINT00</option>
+                    <option value="98552">vINT01</option>
+                    <option value="98553">vINT02</option>
+            </select>
+        </div></div>
+                <input type="button" class="ctrlAltDel ctrl-alt-del-button" value="Ctrl+Alt+Delete">
+                    <a class="openInNewWindow open-in-new-window-link icon-link" href="https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10#">Open in new window</a>
+            </div>
+        </div></div>
+                        <div id="containers"></div>
+                        <div id="externalResources"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="chatTab" class="tab  chat">
+                <div class="tabContent" style="bottom: 60px;">
+                    <div class="zoomable">
+                        <div id="chatMessages" style="overflow: auto;">
+
+                        </div>
+                    </div>
+                </div>
+                <div id="chatInputWrapper" style="position:absolute; bottom:0; height:60px; width:100%;">
+                    <textarea id="chatInput" role="textbox" aria-label="Chat Message Input"></textarea>
+                </div>
+                <input type="button" class="primary" value="Send" id="chatSend" role="button" aria-label="Send Chat Message">
+            </div>
+            <div id="helpTab" class="tab  help">
+                <div class="tabContent">
+                    <div class="zoomable">
+
+                            <h2>Support Information</h2>
+                            <table class="fields">
+                                <tbody><tr>
+                                    <td class="fieldName">ID</td>
+                                    <td>34495175</td>
+                                </tr>
+                                    <tr>
+                                        <td class="fieldName">Host</td>
+                                        <td>SEA-HV29</td>
+                                    </tr>
+                                <tr>
+                                    <td class="fieldName">Datacenter</td>
+                                    <td>US West (Seattle)</td>
+                                </tr>
+                            </tbody></table>
+
+                            <h2><label for="theme">Theme</label></h2>
+                            <div>
+                                <select id="theme">
+                                        <option value="3" data-name="blue">Blue</option>
+                                        <option value="4" data-name="gray">Gray</option>
+                                        <option value="5" data-name="green" selected="selected">Green</option>
+                                        <option value="6" data-name="orange">Orange</option>
+                                        <option value="7" data-name="purple">Purple</option>
+                                        <option value="8" data-name="red">Red</option>
+                                        <option value="20" data-name="dark">Dark</option>
+                                </select>
+                            </div>
+
+                        <div id="helpExtensions"></div>
+
+                        <ul class="iconLinksList">
+                                <li class="questionIcon">
+                                    <a href="https://docs.skillable.com/lod/lab-interface-faq.md" target="_blank">Lab Interface FAQ</a>
+                                    <div class="description">Frequently asked questions about the lab interface</div>
+                                </li>
+                                    <li class="supportIcon" id="supportTicketLink"><a class="cslink formsubmit topnav" href="javascript:void(0);" id="cslink_supportlink" target="_blank">Help</a></li>
+
+
+                                <li class="bugIcon">
+                                    <a href="https://labclient.labondemand.com/Instructions/25030ce6-d779-47ea-b732-d5d5e525e02f?rc=10#" id="bugReport">Report a bug</a>
+                                </li>
+                        <li class="newIcon"><a title="Click here to Submit a Support Request." href="https://help.comptia.org/hc/en-us/requests/new" target="_blank">Click here to Submit a Support Request.</a></li><p>Please include as much detail as possible in your help request, including the lab ID above.</p></ul>
+
+                            <div style="margin-top:20px;">
+                                Powered by <a href="https://skillable.com/solutions" target="_blank">Skillable</a> 
+                                |
+                                <a target="_blank" href="https://www.g2.com/contributor/learnondemand-vs?secure%5Bpage_id%5D=Learnondemand-vs&amp;secure%5Brewards%5D=true&amp;secure%5Btoken%5D=839b2cb7a5a16a9e17bef29619706fee2de82770b3d2a6af507fee7a5ee54c7a">Review us</a>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="notificationContainer" role="region" aria-label="Notifications"></div>
+
+    </div>
+
+    <div id="fullScreenMessage" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="fullScreenMessageTitle" aria-describedby="fullScreenMessageText">
+        <div id="fullScreenMessageMask"></div>
+        <div id="fullScreenMessageIcon"></div>
+        <div id="fullScreenMessageCenter" class="baseColor">
+            <div id="fullScreenMessageTextWrapper">
+                <span id="fullScreenMessageLoadingIcon"></span>
+                <div id="fullScreenMessageTitle"></div>
+                <div id="fullScreenMessageText"></div>
+                <div id="fullScreenMessageButtonWrapper">
+                    <span id="fullScreenMessageButtons"></span>
+                    <input type="button" id="closeWindow" value="Close Window">
+                </div>
+                <div id="fullScreenProgressWrapper" style="display: none;">
+                    <div id="fullScreenProgressText"></div>
+                    <div id="fullScreenProgressBar">
+                        <div id="fullScreenProgressFill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="examResultDetails" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="ExamResultDetailsTitle">
+        <div id="examResultDetailsHeader"></div>
+        <div id="examResultDetailsCenter" class="baseColor">
+            <div id="examResultDetailsWrapper">
+                <div id="examResultDetailsTitle"></div>
+                <div id="examResultDetailsText"></div>
+                <div id="examResultDetailsButtonWrapper">
+                    <span id="examResultDetailsButtons"></span>
+                    <input type="button" id="closeWindow" value="Close Window">
+                </div>
+                <div id="exResultDetailsProgressWrapper" style="display: none;">
+                    <div id="examResultDetailsProgressText"></div>
+                    <div id="examResultDetailsProgressBar">
+                        <div id="examResultDetailsProgressFill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <textarea id="copyInput" style="position: absolute; left:-10000px; top:-10000px; display:none;"></textarea>
+
+    <script>
+    var model = {
+        id: 34495175,
+        key: "25030ce6-d779-47ea-b732-d5d5e525e02f",
+        layoutVersion: 1,
+        isThemePreview: false,
+        helpTabLabel: "Help",
+        monitor: false,
+        takeControl: false,
+        allowUserTransferSaves: false,
+        chatChannel: "",
+        userId: "4989495",
+        userFullName: "Peter Mugwe Karuga",
+        publishKey: "pub-c-4b0a6a73-e675-4561-b40f-cee58350bb9f",
+        subscribeKey: "sub-c-9c6a8086-0758-11eb-8c73-de77696b0464"
+    };
+    </script>
+
+
+
+    
+<script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = o._q || [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+                    o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+                })(v[w]);
+                y = e.createElement(n); y.async = !0; y.src = 'https://content.analytics.learnondemandsystems.com/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+
+            pendo.initialize({
+                visitor: {
+                    id: "lod-4989495",
+                    platform: "lod",
+                    iem: false,
+                    labAuthor: false,
+                    instructionsAuthor: false
+                },
+                account: {
+                    id: "lod-51",
+                    name: "CompTIA Learning Group - Production",
+                    platform: "lod"
+                }
+            });
+        })("96676bcb-26ef-4838-444e-e6794e8d7b9a");
+</script>
+
+
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>

@@ -1,0 +1,112 @@
+﻿div.virtualKeyboard {
+    font: 13px "Segoe UI", Tahoma, "Lucida Grande", Verdana, Arial, sans-serif;
+    min-width: 800px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10000;
+    white-space: nowrap;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+
+    background: #67676C;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#97979C), to(#67676C));
+    background-image: -webkit-linear-gradient(top, #97979C, #67676C);
+    background-image: -moz-linear-gradient(top, #97979C, #67676C);
+    background-image: -ms-linear-gradient(top, #97979C, #67676C);
+    background-image: -o-linear-gradient(top, #97979C, #67676C);
+    background-image: linear-gradient(top, #97979C, #67676C);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#97979C', EndColorStr='#67676C');
+    
+
+}
+
+div.virtualKeyboard .closeButton {
+    z-index: 1;
+    position:absolute; 
+    right:8px; 
+    top:4px; 
+    font-size:13px; 
+    color:#ffffff; 
+    font-family: Verdana;
+    cursor: pointer;
+}
+
+div.virtualKeyboard div.keyWrapper {
+    padding: 4px 8px 8px 8px;
+}
+
+
+div.virtualKeyboard ul.keyboard-row {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+    position: relative;
+}
+
+div.virtualKeyboard li.key:hover {
+    color: #2054DA;
+    z-index: 2;
+}
+       
+div.virtualKeyboard li.key {
+    white-space: nowrap;
+    color: #000;
+    cursor: pointer;
+    display: -moz-inline-box;
+    display: inline-block;
+    vertical-align: middle;
+    
+    height: 13px;
+    line-height: 13px;
+    width: 29px;
+    margin: 0;
+    padding: 6px 0 6px 0;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    background: #EEEEF3;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#F7F7FC), to(#E7E7EC));
+    background-image: -webkit-linear-gradient(top, #F7F7FC, #E7E7EC);
+    background-image: -moz-linear-gradient(top, #F7F7FC, #E7E7EC);
+    background-image: -ms-linear-gradient(top, #F7F7FC, #E7E7EC);
+    background-image: -o-linear-gradient(top, #F7F7FC, #E7E7EC);
+    background-image: linear-gradient(top, #F7F7FC, #E7E7EC);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#F7F7FC', EndColorStr='#E7E7EC');
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 1px #FFF, 0 1px 1px #000;
+    -moz-box-shadow: inset 0 1px #FFF, 0 1px 1px #000;
+    box-shadow: inset 0 1px #FFF, 0 1px 1px #000;
+}
+
+div.virtualKeyboard li.key.text {
+    font-size: 10px;
+}
+
+div.virtualKeyboard li.key.text.small {
+    font-size: 9px;
+}
+
+div.virtualKeyboard li.key:active, div.virtualKeyboard li.key.down {
+    color: #FFF;
+    background: #0375ED;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#058BF5), to(#0160E6));
+    background-image: -webkit-linear-gradient(top, #058BF5, #0160E6);
+    background-image: -moz-linear-gradient(top, #058BF5, #0160E6);
+    background-image: -ms-linear-gradient(top, #058BF5, #0160E6);
+    background-image: -o-linear-gradient(top, #058BF5, #0160E6);
+    background-image: linear-gradient(top, #058BF5, #0160E6);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#058BF5', EndColorStr='#0160E6');
+    -webkit-box-shadow: inset 0 1px #44A9F8, inset 0 24px 0 -4px rgba(255,255,255,.05), 0 0 8px #058BF5, 0 1px 1px #000;
+    -moz-box-shadow: inset 0 1px #44A9F8, inset 0 24px 0 -4px rgba(255,255,255,.05), 0 0 8px #058BF5, 0 1px 1px #000;
+    box-shadow: inset 0 1px #44A9F8, inset 0 24px 0 -4px rgba(255,255,255,.05), 0 0 8px #058BF5, 0 1px 1px #000;
+}
+

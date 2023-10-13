@@ -1,0 +1,138 @@
+﻿(function ($) {
+
+    var settings = null;
+    var shown = false;
+        var numLockOn = false;
+
+    function showShiftValues() {
+        this.find("li.shiftable").each(function () {
+            var $shiftable = $(this);
+            $shiftable.html($shiftable.attr("data-shift"));
+        });
+        if (numLockOn) {
+            hideNumLockValues.apply(this);
+        }
+    }
+
+    function hideShiftValues() {
+        this.find("li.shiftable").each(function () {
+            var $shiftable = $(this);
+            $shiftable.html($shiftable.attr("data-normal"));
+        });
+        if (numLockOn) {
+            showNumLockValues.apply(this);
+        }
+    }
+
+    function showNumLockValues() {
+        this.find("li.numpad").each(function () {
+            var $numpad = $(this);
+            $numpad.html($numpad.attr("data-shift"));
+        });
+    }
+
+    function hideNumLockValues() {
+        this.find("li.numpad").each(function () {
+            var numpad = $(this);
+            numpad.html(numpad.attr("data-normal"));
+        });
+    }
+
+    var methods = {
+        init: function (options) {
+            var $virtualKeyboard = this;
+            settings = $.extend({
+                onKeyDown: function (key) { },
+                onKeyUp: function (key) { },
+                onKeyPress: function (key) { }
+            }, options);
+            this.find("li").click(function () {
+                var $li = $(this);
+                var key = $(this).attr("data-key");
+                if ($li.hasClass("modifier")) {
+                    if ($li.hasClass("down")) {
+                        settings.onKeyUp(key);
+                        $li.removeClass("down");
+                        if (($li.hasClass("shift"))) {
+                            hideShiftValues.apply($virtualKeyboard);
+                        }
+                    } else {
+                        settings.onKeyDown(key);
+                        $li.addClass("down");
+                        if (($li.hasClass("shift"))) {
+                            showShiftValues.apply($virtualKeyboard);
+                        }
+                    }
+                } else if ($li.hasClass("capslock")) {
+                    if ($li.hasClass("down")) {
+                        $li.removeClass("down");
+                    } else {
+                        $li.addClass("down");
+                    }
+                    settings.onKeyPress(key);
+                } else if ($li.hasClass("numlock")) {
+                    if (numLockOn) {
+                        $li.removeClass("down");
+                        hideNumLockValues.apply($virtualKeyboard);
+                    } else {
+                        $li.addClass("down");
+                        showNumLockValues.apply($virtualKeyboard);
+                    }
+                    numLockOn = !numLockOn;
+                    settings.onKeyPress(key);
+                } else {
+                    settings.onKeyPress(key);
+                    window.setTimeout(function () {
+                        $virtualKeyboard.find("li.modifier.down").each(function () {
+                            var $modifier = $(this);
+                            settings.onKeyUp($modifier.attr("data-key"));
+                            $modifier.removeClass("down");
+                            if (($modifier.hasClass("shift"))) {
+                                hideShiftValues.apply($virtualKeyboard);
+                            }
+                        });
+                    }, 100);
+                }
+            });
+            this.find(".closeButton").click(function () {
+                methods.hideKeyboard.apply($virtualKeyboard);
+            });
+            shown = this.is(':visible');
+        },
+
+        toggle: function () {
+            if (shown) {
+                methods.hideKeyboard.apply(this);
+            } else {
+                methods.showKeyboard.apply(this);
+            }
+        },
+
+        hideKeyboard: function () {
+            var height = this.height();
+            this.animate({ 'margin-bottom': -height }, 250, function () { $(this).hide(); });
+            shown = false;
+        },
+
+        showKeyboard: function () {
+            var height = this.height();
+            this.css('margin-bottom', -height + "px")
+                .show()
+                .animate({ 'margin-bottom': 0 }, 250);
+            shown = true;
+        }
+    };
+
+    $.fn.virtualKeyboard = function (methodOrOptions) {
+        if (methods[methodOrOptions]) {
+            return methods[methodOrOptions].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof methodOrOptions === 'object' || !methodOrOptions) {
+            // Default to "init"
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('Method ' + methodOrOptions + ' does not exist on jQuery.virtualKeyboard');
+            return this;
+        }
+    };
+
+})(jQuery);

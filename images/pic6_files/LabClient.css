@@ -1,0 +1,3009 @@
+﻿@font-face {
+    font-family: "labclient";
+    src: url("/fonts/labclient.woff?v=27") format("woff"), url("/fonts/labclient.ttf?v=27") format("truetype"), url("/fonts/labclient.svg?v=27") format("svg");
+}
+
+body, html {
+    font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: #fff;
+    color: #000;
+}
+
+ul li, ol li {
+    margin: 5px 0;
+}
+
+#header {
+    padding: 15px 15px 11px 15px;
+    white-space: nowrap;
+    min-height: 72px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+#labName {
+    margin-right: 25px;
+}
+
+#timerWrapper {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+#timer {
+    display: inline-block;
+    font-size: 12px;
+}
+
+#timerWrapper.expiring {
+    transition: background-color .5s linear, padding .5s linear;
+    background-color: #b52937;
+    padding: 1px 8px 3px 8px;
+    border-radius: 5px;
+}
+
+.expiring #timer {
+    font-weight: bold;
+}
+
+#topNav {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#mainMenuButton {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.instructions-iconbutton {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    color: #fff;
+    background: none;
+    padding: 0;
+}
+
+.instructions-iconbutton:hover {
+    border: 1px solid transparent;
+}
+
+.instructions-iconbutton:active {
+    background: rgba(255,255,255,.15);
+}
+
+#mainMenuButton::before {
+    content: "\e700";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 20px;
+}
+
+#mainMenu {
+    position: absolute;
+    background-color: #efefef;
+    color: #000;
+    right: 15px;
+    z-index: 1;
+    margin-top: 5px;
+    box-shadow: rgba(0, 0, 0, 0.5) 2px 4px 8px;
+}
+
+#mainMenu .menuItem {
+    padding: 12px 20px 12px 15px;
+    cursor: pointer;
+}
+
+#mainMenu .menuItem::before {
+    margin-right: 9px;
+}
+
+#mainMenu .menuItem:hover {
+    background-color: #cccccc;
+}
+
+#exit::before, #disconnect::before {
+    content: "\e711";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 18px;
+}
+
+.cancelLink-s:before {
+    content: "\E711";
+    font-family: "labclient";
+    margin-right: 4px;
+    display: inline-block;
+}
+
+#save::before {
+    content: "\f0c7";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 16px;
+    margin-top: 1px;
+    margin-right: 10px;
+}
+
+#editInstructions::before {
+    content: "\e70f";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 16px;
+    margin-top: 1px;
+}
+
+#editInstructions.selected {
+    color: #fff;
+    background-color: #de5454 !important;
+}
+
+#assign::before {
+    content: "\e715";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 16px;
+    margin-top: 1px;
+}
+
+
+
+#notificationsButton {
+    margin-right: 25px;
+    cursor: pointer;
+    display: none;
+}
+
+#notificationsButton.active {
+    display: inline-block;
+}
+
+#notificationsButton::before {
+    content: "\e715";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 20px;
+    margin-top: 1px;
+}
+
+#tabHeadings {
+    white-space: nowrap;
+    min-height: 40px;
+    box-sizing: border-box;
+    background-color: #efefef;
+    position: relative;
+}
+
+.tabHeading {
+    padding: 10px;
+    display: inline-block;
+    cursor: pointer;
+    height: 40px;
+    box-sizing: border-box;
+    color: #000;
+}
+
+.tabHeading:hover {
+    text-decoration: none;
+}
+
+.tab {
+    display: none;
+}
+
+.tab.selected {
+    display: block;
+}
+
+.tabContent {
+    padding: 15px;
+    overflow-y: auto;
+    overflow-x: auto;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 112px;
+}
+
+    .tabContent.externalManual {
+        padding: 0px;
+        overflow-y: inherit;
+        overflow-x: inherit;
+    }
+
+.externalManualWrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+iframe.externalManual {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.zoomInHeader {
+    top: -32px !important;
+    color: #fff;
+}
+
+#zoomWrapper {
+    position: absolute;
+    right: 0;
+    top: 9px;
+    margin-right: 15px;
+    font-size: 12px;
+}
+
+    #zoomWrapper::before {
+        content: "\e71e";
+        font-family: "labclient";
+        display: inline-block;
+        vertical-align: top;
+        font-size: 15px;
+        margin-top: 3px;
+        margin-right: 2px;
+    }
+
+#zoom {
+    width: 50px;
+    margin: 0;
+    padding: 0;
+}
+
+@media only screen and (min-width: 400px) {
+    #zoom {
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width: 345px) {
+    #zoomWrapper {
+        display: none;
+    }
+}
+
+/*Windows High Contrast Mode https://blogs.windows.com/msedgedev/2020/09/17/styling-for-windows-high-contrast-with-new-standards-for-forced-colors/ */
+@media (forced-colors: active) {
+    #zoom, #zoomWrapper::before, #zoomWrapper:focus-within {
+        forced-color-adjust: none;
+        background-color: Canvas;
+        color: CanvasText;
+    }
+    #zoom::-webkit-slider-thumb, #zoom::-webkit-scrollbar-track {
+        forced-color-adjust: none;
+        -webkit-appearance: none; /* Override default look */
+        appearance: none;
+        background-color: CanvasText;
+        color: CanvasText;
+        background: CanvasText;
+    }
+    #zoom::-moz-range-thumb {
+        forced-color-adjust: none;
+        background-color: CanvasText;
+        color: CanvasText;
+    }
+}
+
+.zoomable {
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+}
+
+#instructionsContent.withNavigation {
+    bottom: 60px;
+}
+
+#instructionsContent.withTaskProgress {
+    bottom: 20px;
+}
+
+#instructionsContent.withNavigation.withTaskProgress {
+    bottom: 80px;
+}
+
+.page {
+    display: none;
+}
+
+    .page.selected {
+        display: block;
+    }
+
+
+
+
+
+
+#instructionsFooter {
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    /*padding: 15px;*/
+    background-color: #efefef;
+    text-align: center;
+}
+
+#previous, #next {
+    cursor: pointer;
+    padding: 9px 20px;
+    display: inline-block;
+    line-height: 42px;
+}
+
+    #previous.disabled {
+        display: none;
+    }
+
+    #next.disabled {
+        cursor: default;
+        opacity: .5;
+    }
+
+#previous {
+    padding-left: 36px;
+    float: left;
+}
+
+    #previous::before {
+        content: "\e76b";
+        font-family: "labclient";
+        position: absolute;
+        margin-top: 1px;
+        margin-left: -20px;
+    }
+
+#next {
+    float: right;
+    padding-right: 36px;
+}
+
+    #previous:hover, #next:hover {
+        background-color: #d4d3d3;
+    }
+
+    #previous.disabled:hover, #next.disabled:hover {
+        background-color: transparent;
+    }
+
+    #next::after {
+        content: "\e76c";
+        font-family: "labclient";
+        margin-left: 4px;
+        position: absolute;
+        margin-top: 1px;
+    }
+
+
+
+
+#taskProgressBar {
+    user-select: none;
+    height: 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.progressBar {
+    height: 20px;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #b7b7b7;
+}
+
+.progress {
+    height: 20px;
+    text-align: center;
+    background-color: #0067B8;
+}
+
+.progressText {
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 20px;
+    font-size: 12px;
+    position: absolute;
+}
+
+.box-color {
+    background-color: #efefef;
+}
+
+blockquote,
+.knowledge,
+.note {
+    margin: 10px 0;
+    background-color: #efefef;
+    padding: 10px;
+    display: block;
+}
+
+.feedback blockquote,
+.feedback .knowledge,
+.feedback .note {
+    background-color:transparent;
+}
+
+.alert {
+    margin: 10px 0;
+    background-color: #ffe0e0;
+    padding: 10px;
+    display: block;
+    padding-left: 32px;
+}
+
+.alert::before {
+    font-weight: normal;
+    content: "\e7ba";
+    font-family: "labclient";
+    font-size: 18px;
+    position: absolute;
+    margin-top: 1px;
+    margin-left: -24px;
+}
+
+blockquote.help, blockquote.hint, blockquote.note {
+    padding-left: 32px;
+}
+
+blockquote.help::before, blockquote.hint::before, blockquote.note::before {
+    font-weight: normal;
+    font-family: "labclient";
+    font-size: 18px;
+    position: absolute;
+    margin-top: 1px;
+    margin-left: -24px;
+}
+
+blockquote.help::before {
+    content: "\f29c";
+}
+
+blockquote.hint::before {
+    content: "\e920";
+}
+
+blockquote.note::before {
+    content: "\e7c3";
+}
+
+code {
+    background-color: #efefef;
+    padding: 2px 5px;
+    font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+    display: inline-block;
+}
+ 
+.alert code {
+    background-color: #fff;
+}
+
+.feedback code {
+    background-color: transparent;
+}
+
+.codeTitle {
+    margin-top: 10px;
+    margin-left: 22px;
+    font-size: 13px;
+    font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+    background-color: #efefef;
+    padding: 4px 10px;
+    display: inline-block;
+}
+
+pre code {
+    padding: 10px;
+    display: block;
+    overflow: auto;
+}
+
+pre code.wrap {
+    white-space: pre-wrap;
+}
+
+code:not(.nocopy) {
+    margin-left: 24px;
+}
+
+pre code:not(.nocopy) {
+    margin-left: 22px;
+}
+
+code:not(.nocopy)::before {
+    font-weight: normal;
+    content: "\e8c8";
+    font-family: "labclient";
+    font-size: 15px;
+    position: absolute;
+    margin-top: 2px;
+    margin-left: -24px;
+    cursor: pointer;
+}
+
+pre code:not(.nocopy)::before {
+    margin-left: -32px;
+    margin-top: 1px;
+}
+
+.childClient code:not(.nocopy) {
+    margin-left: 24px;
+}
+
+    .childClient code:not(.nocopy)::before {
+        border: solid 1px;
+        content: "T";
+        font-family: "font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;";
+        padding: 0px 4px;
+        margin-left: -28px;
+        margin-top: 1px;
+    }
+
+.childClient pre code:not(.nocopy)::before {
+    margin-left: -34px;
+    margin-top: -2px;
+}
+
+.childClient .codeTitle {
+    margin-left: 24px;
+}
+
+.codeTitle.noIndent {
+    margin-left: 0;
+}
+
+.prettyprint ol.linenums {
+    list-style: none;
+    counter-reset: li;
+}
+
+    .prettyprint ol.linenums > li::before {
+        content: counter(li);
+        color: cadetblue;
+        display: inline-block;
+        text-align: right;
+        direction: rtl;
+        width: 0;
+        margin-left: -30px;
+        margin-right: 30px;
+    }
+
+    .prettyprint ol.linenums > li {
+        counter-increment: li;
+        margin: 0;
+        padding: 2px 0 2px 10px;
+    }
+
+/* override alternate shading for lines */
+.prettyprint li.L1, li.L3, li.L5, li.L7, li.L9 {
+    background: transparent;
+}
+
+.knowledge {
+    padding-left: 32px;
+    padding-bottom: 0;
+}
+
+.knowledge::before {
+    font-weight: normal;
+    content: "\e902";
+    font-family: "labclient";
+    font-size: 18px;
+    position: absolute;
+    margin-left: -24px;
+}
+
+.knowledge.collapsed {
+    position: relative;
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.knowledge.collapsed::after {
+    content: "";
+    font-size: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(transparent, #efefef);
+    height: 60px;
+    width: 100%;
+}
+
+.knowledge.expanded {
+    overflow: auto;
+    max-height: inherit;
+}
+
+.knowledge.expanded::after {
+    height: 0;
+    display: none;
+}
+
+.moreKnowledge {
+    display: block;
+    margin-top: -10px;
+    background-color: #efefef;
+    padding-left: 32px;
+    min-height: 10px;
+    box-sizing: border-box;
+}
+
+.moreKnowledge a {
+    display: inline-block;
+    margin: 10px 0;
+}
+
+
+
+
+video::-internal-media-controls-download-button {
+    display: none;
+}
+
+video::-webkit-media-controls-enclosure {
+    overflow: hidden;
+}
+
+video::-webkit-media-controls-panel {
+    width: calc(100% + 30px); /* Adjust as needed */
+}
+
+.videoLink::before {
+    font-weight: normal;
+    content: "\e904";
+    font-family: "labclient";
+    font-size: 110%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 4px;
+    margin-top: 2px;
+}
+
+.audioLink::before {
+    font-weight: normal;
+    content: "\e768";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 5px;
+    margin-top: 3px;
+}
+
+.imageLink::before {
+    font-weight: normal;
+    content: "\e722";
+    font-family: "labclient";
+    font-size: 110%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 4px;
+    margin-top: 2px;
+}
+
+.hintLink::before {
+    font-weight: normal;
+    content: "\e920";
+    font-family: "labClient";
+    font-size: 110%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 2px;
+    margin-top: 2px;
+}
+
+.helpLink::before {
+    font-weight: normal;
+    content: "\f29c";
+    font-family: "labClient";
+    font-size: 110%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 2px;
+    margin-top: 2px;
+}
+
+.knowledgeLink::before {
+    font-weight: normal;
+    content: "\e902";
+    font-family: "labClient";
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 3px;
+    margin-top: 2px;
+}
+
+.fileLink::before {
+    font-weight: normal;
+    content: "\e7c3";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 2px;
+    margin-top: 2px;
+}
+
+.deleteLink:before, .cancelLink:before {
+    content: "\E711";
+    font-family: "labclient";
+    margin-right: 4px;
+    display: inline-block;
+}
+
+.createLink:before {
+    content: "\E710";
+    font-family: "labclient";
+    margin-right: 4px;
+    display: inline-block;
+}
+
+
+.deleteLink.small, editLink.small, reateLink.small {
+    font-size: 13px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.copyable {
+    color: #007F00;
+    cursor: pointer;
+}
+
+.copyable::before {
+    font-weight: normal;
+    content: "\e8c8";
+    font-family: "labclient";
+    margin-right: 2px;
+    vertical-align: middle;
+}
+
+.typeText {
+    color: #007F00;
+    cursor: pointer;
+}
+
+.typeText::before {
+    font-weight: normal;
+    border: solid 1px;
+    content: "T";
+    font-family: "font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;";
+    margin-right: 4px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 1px 4px 0px 4px;
+}
+
+.copyable.typeText::before {
+    font-weight: normal;
+    content: "\e8c8  T";
+    font-family: "labclient";
+    margin-right: 4px;
+    vertical-align: top;
+    padding: 2px 4px 0px 4px;
+}
+
+.feedback .copyable, .feedback .typeText {
+    color: white;
+}
+
+.clickFeedbackMessage {
+    position: absolute;
+    background-color: #333;
+    color: #ffffff;
+    font-size: 12px;
+    padding: 10px;
+    z-index: 3000;
+}
+
+input[type=button], button, label.button {
+    cursor: pointer;
+    font-size: 13px;
+    display: inline-block;
+    padding: 6px 20px;
+    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #000;
+    border: solid 1px transparent;
+    overflow: hidden;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: bottom;
+    outline: 1px dashed transparent;
+    -webkit-appearance: none;
+}
+
+    input[type=button]:hover, button:hover, label.button:hover {
+        border: solid 1px #777;
+    }
+
+    input[type=button]:active, button:active, label.button:active {
+        background-color: #999999;
+    }
+
+    input[type=submit], input[type=button].primary, button.primary {
+        color: #ffffff;
+        background-color: #0067B8;
+        border: solid 1px #0067B8;
+        -webkit-appearance: none;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover, input[type=button].primary:hover, button.primary:hover {
+            background-color: #006cc2;
+            border: solid 1px #004175;
+        }
+
+        input[type=submit]:active, input[type=button].primary:active, button.primary:active {
+            background-color: #005497;
+        }
+
+        input[type=submit]:focus, input[type=button]:focus, button:focus, label.button:focus, #zoomWrapper:focus-within {
+            outline: 1px solid black;
+        }
+
+        input[type=submit]:disabled, input[type=button]:disabled, button:disabled {
+            opacity: .50;
+            border: solid 1px transparent;
+            cursor: default;
+        }
+
+#fullScreenMessage {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#fullScreenMessageMask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+}
+
+#fullScreenMessageCenter {
+    /*position: absolute;
+    width: 100%;
+    top: 50%;
+    margin-top: -70px;*/
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    min-height: 220px;
+}
+
+#fullScreenMessageTextWrapper {
+    padding: 40px;
+    background-repeat: no-repeat;
+}
+
+#fullScreenMessageTitle {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+#fullScreenMessageText {
+    font-size: 14px;
+    margin: 20px 0;
+}
+
+#fullScreenMessageButtonWrapper {
+    margin-top: 15px;
+}
+
+    #fullScreenMessageButtonWrapper input[type=button] {
+        margin-right: 8px;
+    }
+
+#fullScreenProgressBar {
+    width: 600px;
+    height: 6px;
+    margin-top: 15px;
+    background-color: #ddd;
+}
+
+#fullScreenProgressFill {
+    background-color: #0067B8;
+    height: 6px;
+    width: 0;
+}
+
+#fullScreenProgressText {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+#fullScreenMessage.withLoadingImage #fullScreenMessageTextWrapper {
+    margin-left: 32px;
+}
+
+#fullScreenMessageLoadingIcon {
+    display: none;
+    position: absolute;
+    margin-left: -32px;
+    margin-top: 3px;
+    border: 4px solid #dfdfdf;
+    border-top: 4px solid #000;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+}
+
+#fullScreenMessage.withLoadingImage #fullScreenMessageLoadingIcon {
+    display: block;
+}
+
+.loadingAnimation-large {
+    display: inline-block;
+    border: 8px solid #dfdfdf;
+    border-top: 8px solid #000;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+}
+
+.loadingAnimation-medium {
+    display: inline-block;
+    border: 4px solid #dfdfdf;
+    border-top: 4px solid #000;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    animation: spin 1s linear infinite;
+}
+
+.loadingAnimation-small {
+    display: inline-block;
+    border: 3px solid #dfdfdf;
+    border-top: 3px solid #000;
+    border-radius: 50%;
+    width: 6px;
+    height: 6px;
+    animation: spin 1s linear infinite;
+}
+
+.page img, .dialogContent img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.page video, .dialogContent video {
+    display: block;
+    margin: 15px 0;
+    max-width: 100%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.noselect {
+    cursor: default;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+    user-select: none;
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+    h2:first-child {
+        margin-top: 0;
+    }
+
+#helpTab h2 {
+    margin-bottom: 10px;
+}
+
+.cloudResourceGroup .description, #externalResources.description {
+    font-size: 13px;
+    font-style: italic;
+}
+
+div.cloudCredential {
+    margin-bottom: 20px;
+}
+
+#helpTab select {
+    width: 100%;
+}
+
+select {
+    border: solid 1px #000;
+    padding: 4px;
+    font-size: 13px;
+}
+
+input[type="text"], input[type="password"], input[type="number"], input[type="email"], select, textarea {
+    font-family: Segoe UI,'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    padding: 5px 8px;
+    border: 1px solid #000000;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    outline: 0;
+    background: #FFF;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    input[data-val-required] + span:before, input.required + span:before, select.required + span:before {
+        content: " * ";
+    }
+
+input[type="text"], input[type="password"], input[type="number"], input[type="email"], select {
+    height: 32px;
+}
+
+input[type="number"] {
+    min-width: 60px;
+}
+
+    input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
+        border-color: #000;
+        outline: 2px solid #000;
+    }
+
+table.fields {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+    table.fields td.fieldName {
+        opacity: .8;
+        text-align: right;
+        padding-right: 10px;
+        /*font-size: 90%;*/
+    }
+
+    table.fields td {
+        padding: 4px;
+    }
+
+#helpTab table.fields td {
+    padding: 1px 4px;
+}
+
+
+table.simpleGrid {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+    table.simpleGrid td {
+        padding: 3px 20px 3px 3px;
+    }
+
+        table.simpleGrid td:last-child {
+            padding-right: 5px;
+        }
+
+    table.simpleGrid th {
+        color: #777;
+        font-size: 90%;
+        font-weight: normal;
+        text-align: left;
+        padding: 3px 10px 10px 3px;
+    }
+
+    table.simpleGrid .rowHeader {
+        color: #777;
+        font-size: 90%;
+        font-weight: normal;
+        text-align: right;
+    }
+
+    table.simpleGrid tfoot td {
+        background-color: #fff;
+        color: #000;
+        font-weight: bold;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    table.simpleGrid td.editButtons a, table.simpleGrid td.editButtons a:visited {
+        margin-left: 4px;
+    }
+
+table.zebra tbody tr:nth-child(odd) {
+    background-color: #f0f0f0;
+}
+
+#helpTab table.fields td.fieldName {
+    vertical-align: bottom;
+}
+
+
+a {
+    color: #0067B8;
+    text-decoration: none;
+    margin: 0;
+}
+
+    a:visited {
+        color: #0067B8;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+.bugIcon::before {
+    content: "\e96d";
+    font-family: "labClient";
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 3px;
+}
+
+.questionIcon::before {
+    content: "\f29c";
+    font-family: "labClient";
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 3px;
+}
+
+.supportIcon::before {
+    content: "\e9b6";
+    font-family: "labClient";
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 3px;
+}
+
+.supportChatIcon::before {
+    content: "\e96b";
+    font-family: "labClient";
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 3px;
+}
+
+.supportChat2Icon::before {
+    content: "\e96e";
+    font-family: "labClient";
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 3px;
+}
+
+.iconLinksList {
+    list-style-type: none;
+    padding: 0px 0 0 22px;
+    margin: 0 0 0 0;
+}
+
+    .iconLinksList li {
+        margin: 18px 0;
+    }
+
+    .iconLinksList a {
+        /*color: black;*/
+    }
+
+    .iconLinksList .description {
+        font-size: 85%;
+    }
+
+    .iconLinksList li::before {
+        position: absolute;
+        margin-left: -22px;
+    }
+
+
+
+
+
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: transparent;
+}
+
+    input[type=range]:focus {
+        outline: none;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: none;
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        background: #999;
+        margin-top: -5px;
+    }
+
+    input[type=range]:focus::-webkit-slider-runnable-track {
+        background: #ccc;
+    }
+
+    input[type=range]::-moz-range-track {
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px;
+    }
+
+    input[type=range]::-moz-range-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #999;
+    }
+
+    input[type=range]:-moz-focusring {
+        outline: 1px solid white;
+        outline-offset: -1px;
+    }
+
+    input[type=range]::-ms-track {
+        margin-top: 4px;
+        height: 5px;
+        background: transparent;
+        border-color: transparent;
+        border-width: 5px 0;
+        color: transparent;
+    }
+
+    input[type=range]::-ms-fill-lower {
+        background: #777;
+        border-radius: 10px;
+    }
+
+    input[type=range]::-ms-fill-upper {
+        background: #ddd;
+        border-radius: 10px;
+    }
+
+    input[type=range]::-ms-thumb {
+        border: none;
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        background: #777;
+        margin-top: 0px;
+    }
+
+    input[type=range]:focus::-ms-fill-lower {
+        background: #888;
+    }
+
+    input[type=range]:focus::-ms-fill-upper {
+        background: #ccc;
+    }
+
+@supports (-ms-ime-align: auto) {
+    input[type=range]::-ms-track {
+        border-width: 0;
+    }
+}
+
+
+#notificationContainer {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    margin-right: 32px;
+    margin-bottom: 85px;
+    margin-left: 15px;
+}
+
+.notification {
+    background-color: #323232;
+    color: #fff;
+    margin-top: 10px;
+    position: relative;
+    max-width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.5) 2px 4px 8px;
+}
+
+.notificationContentTopPadding {
+    padding-top: 25px;
+}
+
+.notificationContent {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 0 25px 25px 25px;
+    box-sizing: border-box;
+}
+
+@media only screen and (min-width: 238px) {
+    .notification {
+        width: 150px;
+    }
+}
+
+@media only screen and (min-width: 288px) {
+    .notification {
+        width: 200px;
+    }
+}
+
+@media only screen and (min-width: 338px) {
+    .notification {
+        width: 250px;
+    }
+}
+
+@media only screen and (min-width: 387px) {
+    .notification {
+        width: 300px;
+    }
+}
+
+.closeNotification {
+    cursor: pointer;
+}
+
+.closeNotification::before {
+    content: "\e711";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 16px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
+
+.closeNotification:focus::before, .dialogCloseButton:focus::before {
+    outline: solid 1px #ccc;
+}
+
+.notificationButtonWrapper {
+    margin-top: 15px;
+}
+
+.notification input[type=button], .notification button {
+    background-color: #efefef;
+    color: #323232;
+    margin-right: 10px;
+}
+
+.notification input[type=button]:hover, .notification button:hover {
+    background-color: #fff;
+    border: solid 1px #fff;
+}
+
+.notification input[type=button]:active, .notification button:active {
+    border: solid 1px #0182e9;
+    background-color: #e1dfdf;
+}
+
+.notification input[type=submit], .notification input[type=button].primary, .notification button.primary {
+    color: #ffffff;
+    background-color: #0182e9;
+    border: solid 1px #0182e9;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.notification input[type=submit]:hover, .notification input[type=button].primary:hover, .notification button.primary:hover {
+    background-color: #008eff;
+    border: solid 1px #008eff;
+}
+
+.notification input[type=submit]:active, .notification input[type=button].primary:active, .notification button.primary:active {
+    background-color: #0067B8;
+}
+
+.notification input[type=submit].primary:focus, .notification input[type=button].primary:focus, .notification button.primary:focus {
+    outline: 1px solid white;
+}
+
+.notification input[type=submit]:focus, .notification input[type=button]:focus, .notification button:focus {
+    outline: 1px solid #0067B8;
+}
+
+.notification .copyable {
+    color: #00ff14;
+}
+
+.dialog {
+    z-index: 2000;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.dialogMask {
+    opacity: .5;
+    background-color: #000000;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.dialogBox {
+    background-color: #fff;
+    border: solid 1px #0067B8;
+    box-sizing: border-box;
+    height: 95%;
+    width: 90%;
+    margin: auto;
+    background-color: #fff;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.dialogCloseButton {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.dialogCloseButton::before {
+    content: "\e711";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 16px;
+}
+
+.dialogBox .upperRightButtons {
+    position: absolute;
+    right: 50px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.dialogCloseCountDown {
+    position: absolute;
+    left: 25px;
+    top: 20px;
+}
+
+.dialogTitle {
+    font-size: 20px;
+    margin: 20px 25px;
+}
+
+.dialogContent {
+    overflow: auto;
+    position: absolute;
+    top: 65px;
+    bottom: 20px;
+    left: 25px;
+    right: 5px;
+    padding-right: 20px;
+}
+
+.dialogContent.noScroll {
+    overflow: inherit;
+}
+
+.dialogContent.noPadding {
+    left: 5px;
+    padding-right: 10px;
+}
+
+.dialog.hasButtons .dialogContent {
+    bottom: 70px;
+}
+
+.dialogButtons {
+    display: none;
+}
+
+.dialog.hasButtons .dialogButtons {
+    display: block;
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+}
+
+.dialogButtons input[type='button'] {
+    margin-left: 10px;
+}
+
+.listedNotification {
+    background-color: #efefef;
+    padding: 12px;
+    overflow: auto;
+    max-height: 400px;
+}
+
+.listedNotification:not(:first-child) {
+    margin-top: 15px;
+}
+
+.listedNotificationDate {
+    font-style: italic;
+    margin-bottom: 10px;
+    font-size: 10px;
+}
+
+
+
+table.fields td.cloudResource {
+    padding-bottom: 5px;
+}
+
+blockquote {
+    min-height: 1em;
+}
+
+
+h1 {
+    font-size: 22px;
+    margin: 20px 0;
+    font-weight: normal;
+    border-bottom: solid #000 1px;
+    padding-bottom: 15px;
+}
+
+h2 {
+    font-size: 20px;
+    margin: 20px 0;
+    font-weight: normal;
+}
+
+h3 {
+    font-size: 18px;
+    margin: 20px 0;
+    font-weight: normal;
+}
+
+h4 {
+    font-size: 16px;
+    margin: 20px 0;
+    font-weight: normal;
+}
+
+h5 {
+    margin: 20px 0;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+h6 {
+    margin: 20px 0;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+    h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+        margin-top: 0;
+    }
+
+
+
+ol.taskList {
+    padding-left: 15px;
+    margin-left: 0;
+}
+
+ol .task-list-item {
+    position: relative;
+    margin: 10px 0 10px 30px;
+}
+
+ul.taskList {
+    padding-left: 25px;
+    margin-left: 0;
+}
+
+ul .task-list-item {
+    position: relative;
+    margin: 10px 0 10px 0px;
+    list-style-type: none;
+}
+
+.task-list-item label.checkbox {
+    position: absolute;
+    top: 2px;
+}
+
+ol .task-list-item label.checkbox {
+    left: -45px;
+}
+
+ul .task-list-item label.checkbox {
+    left: -25px;
+}
+
+.task-list-item .checkbox input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+}
+
+.task-list-item .checkbox span::before {
+    color: white;
+    background-color: #fff;
+    content: "\e73e";
+    font-family: "labclient";
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    border: solid 1px #000;
+}
+
+.task-list-item .checkbox input:checked + span::before {
+    background-color: green;
+    border-color: green;
+}
+
+.task-list-item .checkbox input:focus + span::before {
+    outline: rgb(59, 153, 252) solid 1px;
+}
+
+.page blockquote p {
+    margin-bottom: 0;
+}
+
+    .page blockquote p:first-child {
+        margin-top: 0;
+    }
+
+.page table {
+    border-collapse: collapse;
+}
+
+    .page table tr {
+        border-bottom: 1px solid #e3e3e3;
+    }
+
+    .page table th:not(:empty) {
+        font-weight: bold;
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+
+    .page table td {
+        padding: 12px 12px;
+    }
+
+div.contentError {
+    background-color: red;
+    padding: 5px;
+    color: #fff;
+}
+
+.page ol {
+    list-style-type: decimal
+}
+
+    .page ol li ol {
+        list-style-type: lower-alpha
+    }
+
+        .page ol li ol li ol {
+            list-style-type: lower-roman
+        }
+
+            .page ol li ol li ol li ol {
+                list-style-type: decimal
+            }
+
+                .page ol li ol li ol li ol li ol {
+                    list-style-type: lower-alpha
+                }
+
+                    .page ol li ol li ol li ol li ol li ol {
+                        list-style-type: lower-roman
+                    }
+
+
+
+
+
+
+
+
+
+
+/*Virtualization*/
+
+div.machine, div.contentResource {
+    padding: 10px;
+    margin: 0 0 15px 0;
+}
+
+    div.machine.selected, div.contentResource.selected {
+        background-color: #efefef;
+    }
+
+    div.machine:hover, div.contentResource:hover {
+        cursor: pointer;
+    }
+
+    div.machine.selected:hover, div.contentResource.selected:hover {
+        cursor: auto;
+    }
+
+img.thumbnail {
+    position: absolute;
+    max-width: 64px;
+    max-height: 48px;
+}
+
+.contentResource img.thumbnail {
+    max-width: 64px;
+    max-height: 48px;
+}
+
+div.machineName {
+    font-size: 15px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 70px;
+}
+
+div.machineNameCenter {
+    height: 48px;
+    font-weight: bold;
+    display: table;
+    width: 100%;
+}
+
+div.machineInfo {
+}
+
+div.machine .ctrlAltDel {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    padding: 8px 10px;
+}
+
+div.selectHeading {
+    margin: 5px 0 1px 0;
+}
+
+div.machine table.credentials {
+    margin: 8px 0;
+}
+
+    div.machine table.credentials td.fieldName {
+        padding-left: 0;
+    }
+
+div.inputRelease {
+    margin-top: 10px;
+    display: none;
+}
+
+#remoteControllerLowPerformance {
+    margin-top: 5px;
+}
+
+    #remoteControllerLowPerformance::before {
+        font-weight: normal;
+        content: "\e7ba";
+        font-family: "labclient";
+        margin-right: 4px;
+        display: inline-block;
+        vertical-align: top;
+        padding-top: 3px;
+    }
+
+
+.loadDeveloperFiles::before {
+    display: inline-block;
+    content: "\25B3";
+    margin-right: 3px;
+    font-size: 120%;
+}
+
+
+
+.notification .pasteable, .notification .typeText {
+    color: #84f651;
+}
+
+.commandLink::before {
+    font-weight: normal;
+    content: "\e944";
+    font-family: "labclient";
+    margin-right: 6px;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 3px;
+}
+
+.command {
+    display: none;
+}
+
+.ctrlAltDeleteLink, .keyComboLink {
+    border: solid 1px;
+    padding: 2px 4px;
+    font-size: 90%;
+}
+
+.ctrlAltDeleteLink:hover, .keyComboLink:hover {
+    text-decoration: none;
+}
+
+.printLink::before {
+    font-family: "labclient";
+    content: "\e914";
+    padding: 0 4px;
+    font-size: 125%;
+    display: inline-block;
+    margin-top: 1px;
+    vertical-align: top;
+}
+
+.selectMachineLink::before {
+    font-family: "labclient";
+    content: "\e915";
+    padding: 0 4px;
+    font-size: 125%;
+    display: inline-block;
+    margin-top: 1px;
+    vertical-align: top;
+}
+
+.loadMediaLink.floppyMedia::before {
+    font-family: "labclient";
+    content: "\f0c7";
+    padding: 0 4px;
+    font-size: 112%;
+    display: inline-block;
+    margin-top: 2px;
+    vertical-align: top;
+}
+
+.loadMediaLink.opticalMedia::before {
+    font-family: "labclient";
+    content: "\e906";
+    padding: 0 4px;
+    font-size: 112%;
+    display: inline-block;
+    margin-top: 2px;
+    vertical-align: top;
+}
+
+
+#resourcesTab select {
+    max-width: 100%;
+}
+
+.negative {
+    color: #ec0000;
+}
+
+.positive {
+    color: green;
+}
+
+.activity {
+    margin: 1.75em 0;
+}
+
+.activity .questionText {
+    margin-bottom: 8px;
+    white-space: pre-line;
+}
+
+.activity .answer {
+    margin: 5px 0;
+}
+
+.activity .answerText {
+    max-width: 100%;
+    min-width: 200px;
+    width: 300px;
+}
+
+.activity.requiredError::after {
+    content: "Required";
+    color: red;
+    display: block;
+    margin-top: 5px;
+}
+
+.activity .evaluate {
+    margin: 10px 10px 0 0;
+}
+
+.activityGroup.on-demand-evaluation .activity .evaluate {
+    display: none;
+}
+
+.activity .feedback {
+    font-size: .8rem;
+    border-radius: 20px;
+    margin-top: 10px;
+    background-color: #efefef;
+    padding: 10px 10px 10px 27px;
+    display: inline-block;
+    overflow: auto;
+    min-height: 15px;
+    word-break: keep-all;
+}
+
+.activity .feedback.positive {
+    background-color: green;
+    color: white;
+}
+
+.activity .feedback.positive:before {
+    margin-left: -16px;
+    position: absolute;
+    content: "\e73e";
+    font-family: "labclient";
+    font-size: 15px;
+    vertical-align: top;
+}
+
+.activity .feedback.negative {
+    background-color: darkred;
+    color: white;
+}
+
+.activity .feedback.negative:before {
+    margin-left: -15px;
+    position: absolute;
+    content: "\e7ba";
+    font-size: 14px;
+    font-family: "labclient";
+    vertical-align: top;
+}
+
+.activity .feedback a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.activity .feedback p:first-of-type, .activity .automatedActivityText p:first-of-type, .scriptTaskList .taskText p:first-of-type {
+    margin-top: 0;
+}
+
+.activity .feedback p:last-of-type, .activity .automatedActivityText p:last-of-type, .scriptTaskList .taskText p:last-of-type {
+    margin-bottom:0;
+}
+
+.activity span.loading {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.activity .automatedActivityText {
+    white-space: pre-line;
+}
+
+.activity .scriptResponse {
+    white-space: pre-wrap;
+}
+
+.activity .scriptResponse:not(:first-child) {
+    margin-top: 10px;
+}
+
+.activity .scriptTaskList {
+    margin: 10px 0;
+    background-color: #efefef;
+    padding: 10px;
+    display: block;
+}
+
+.activity .scriptTask .response {
+    margin-top: 10px;
+}
+
+.activity .scriptTask.pass .response {
+    color: green
+}
+
+.activity .scriptTask.fail .response, .activity .scriptTask.error .response {
+    color: darkred;
+}
+
+.activity .scriptTask:not(:first-of-type) {
+    margin-top: 10px;
+}
+
+.activity .scriptTask .status {
+    position: absolute;
+    margin-left: -25px;
+}
+
+.activity .scriptTask {
+    margin-left: 25px;
+}
+
+    .activity .scriptTask .running {
+        display: none;
+    }
+
+        .activity .scriptTask.running .running {
+            display: inline-block;
+        }
+
+        .activity .scriptTask.running .result {
+            display: none;
+        }
+
+    .activity .scriptTask .result:before {
+        border: solid black 1px;
+        content: "?";
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 1px;
+        text-align: center;
+        line-height: 15px;
+    }
+
+    .activity .scriptTask.pass .result:before {
+        border: solid green 1px;
+        content: "\e73e";
+        font-family: "labclient";
+        color: green;
+        font-size: 15px;
+    }
+
+    .activity .scriptTask.fail .result:before {
+        border: solid red 1px;
+        content: "\e711";
+        font-family: "labclient";
+        color: red;
+        font-size: 15px;
+    }
+
+    .activity .scriptTask .loading {
+        margin-top: 1px;
+    }
+
+input.variableTextBox {
+    width: 250px;
+    max-width: 100%;
+}
+
+textarea.variableTextBox {
+    min-width: 100px;
+    width: 100%;
+    max-width: 100%;
+}
+
+#splitWindows::before {
+    content: "\e100";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 16px;
+    margin-top: 2px;
+}
+
+#joinWindows::before {
+    content: "\e101";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    font-size: 16px;
+    margin-top: 2px;
+}
+
+#share::before {
+    content: "\ee15";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 1px;
+    font-size: 19px;
+}
+
+#transfer::before {
+    content: "\e950";
+    font-family: "labclient";
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 0px;
+    font-size: 20px;
+}
+
+.machine .openInNewWindow {
+    margin-top: 10px;
+    display: block;
+}
+
+.machine .openInNewWindow::before, .container .openInNewWindow::before {
+    content: "\e90a";
+    font-family: "labclient";
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.container .openTerminal::before {
+    content: ">_";
+    font-family: monospace;
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.container {
+    padding: 20px;
+    margin: 0 0 15px 0;
+    background-color: #efefef;
+}
+
+.container.selected {
+    background-color: #d7ebfe;
+}
+
+.container:hover {
+    cursor: pointer;
+}
+
+.container.selected:hover, .container.selected:hover {
+    cursor: auto;
+}
+
+.container .name {
+    font-size: 15px;
+}
+
+.container .controls div {
+    margin-top: 5px;
+}
+
+.container .controls div:first-child {
+    margin-top: 15px;
+}
+
+.container .reconnect::before {
+    content: "\e895";
+    font-family: "labclient";
+    display: inline-block;
+    margin-right: 5px;
+}
+
+#updateContainers::before {
+    content: "\f0c7";
+    font-family: "labclient";
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.dialogChoice {
+    margin-bottom: 15px;
+}
+
+    .dialogChoice label {
+        font-size: 1.2em;
+    }
+
+.dialogChoiceDescription {
+    margin: 5px 0 5px 22px;
+}
+
+
+
+
+.updateContainersChoiceLabel {
+    font-size: 1.2em;
+}
+
+.updateContainersChoiceDescription {
+    margin: 5px 0 15px 22px;
+}
+
+.updateContainer .name, .newContainer .name {
+    font-size: 1.2em;
+}
+
+textarea::placeholder {
+    font-size: .9em;
+    font-style: italic;
+}
+
+.error-message {
+    color: red;
+}
+
+    .error-message.with-icon::before {
+        font-weight: normal;
+        content: "\e7ba";
+        font-family: "labclient";
+        margin-right: 2px;
+    }
+
+.deemphasize {
+    font-size: 85%;
+    opacity: .60;
+}
+
+input.validation-error, select.validation-error, textarea.validation-error {
+    border-color: red !important;
+}
+
+.newContainersDialog .errorSummary, .newLabDialog .errorSummary, .updateContainersDialog .errorSummary {
+    margin-top: 20px;
+}
+
+
+/*jqueryUI
+----------------------------------------------------------*/
+
+.ui-widget-content a.navigationLink {
+    color: #0078D7 !important;
+}
+
+.ui-datepicker, .ui-timepicker-table {
+    border: solid 1px #0078D7 !important;
+}
+
+    .ui-datepicker .ui-state-highlight {
+        color: #000 !important;
+    }
+
+.ui-icon {
+    background-image: none !important;
+}
+
+.ui-datepicker-next::before {
+    content: "\E76C";
+    font-family: labclient;
+    font-size: 12px;
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 7px;
+}
+
+.ui-datepicker-prev::before {
+    content: "\E76B";
+    font-family: "labclient";
+    font-size: 12px;
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 6px;
+}
+
+input.datepicker {
+    width: 110px !important;
+}
+
+input.timepicker {
+    width: 90px !important;
+}
+
+.str {
+    color: #007F00
+}
+
+.screen-reader-only {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    clip: rect(1px 1px 1px 1px);
+   /* IE 6 and 7 clip: rect(1px,1px,1px,1px);*/
+    clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+   /* -webkit-clip-path: polygon(0px 0px, 0px 0px, 0px 0px);*/
+    overflow: hidden !important;
+}
+
+#extendExpiration::before, #editInstanceName::before, .editVirtualMachineInstance::before {
+    content: "\e70f";
+    font-family: "labclient";
+    display: inline-block;
+    font-size: 12px;
+    margin-top: 1px;
+    margin-left: 5px;
+    cursor: pointer;
+    margin-right:3px;
+}
+
+.editVirtualMachineInstance {
+    margin-left:18px;
+}
+
+#labToCancel {
+    border-spacing: 0 0 10px 0;
+}
+
+    #labToCancel td:first-child {
+        vertical-align: top;
+    }
+
+#extendExpireDate {
+    margin: 10px 10px 0 0;
+}
+
+.virtual-machine-console {
+    margin: 15px 0;
+}
+
+.hiddenLabel {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.tree-node {
+    margin: 15px;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+    .tree-node > .node-name {
+        cursor: default;
+        border-radius: 15px;
+        padding: 5px 10px;
+        margin-left: 8px;
+    }
+
+    .tree-node.selected > .node-name {
+        background-color: #0067B8;
+        color: #fff;
+    }
+
+    .tree-node > .node-name:hover {
+        background-color: #cccccc;
+    }
+
+    .tree-node.selected > .node-name:hover {
+        background-color: #0067B8;
+        color: #fff;
+    }
+
+    .tree-node > .node-image:before {
+        content: "\e76c";
+        font-family: "labclient";
+        display: inline-block;
+        cursor: pointer;
+        margin-top: 3px;
+        vertical-align: top;
+        transform: rotate(0deg);
+        transition: transform linear .2s;
+    }
+
+    .tree-node.expanded > .node-image:before {
+        transform: rotate(90deg);
+        transition: transform linear .2s;
+    }
+
+    .tree-node > .children {
+        margin-left: 15px;
+    }
+
+    .tree-node .node-name input[type=text] {
+        background-color: transparent;
+        padding: 0;
+        outline: none;
+        border: none;
+    }
+
+        .tree-node .node-name input[type=text]:focus {
+            outline: none;
+        }
+
+.edit-form details summary {
+    list-style: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px;
+    outline: none;
+}
+
+    .edit-form details summary:hover {
+        background-color: #ededed;
+    }
+
+
+    .edit-form details summary::marker {
+        background: none;
+        color: transparent;
+        display: none;
+    }
+
+    .edit-form details summary::-webkit-details-marker {
+        background: none;
+        color: transparent;
+        display: none;
+    }
+
+    .edit-form details summary:before {
+        content: "\e76c";
+        font-family: "labclient";
+        display: inline-block;
+        font-size: 12px;
+        transition: transform linear .15s;
+        margin-right: 10px;
+        margin-left: 3px;
+    }
+
+.edit-form details[open] summary:before {
+    transform: rotate(90deg);
+    transition: transform linear .15s;
+}
+
+.edit-form details.checkbox summary:before {
+    color: white;
+    background-color: #fff;
+    content: "\e73e";
+    padding: 0;
+    border: solid 1px #000;
+    transition: none;
+    transform: none;
+    margin-right: 8px;
+}
+
+.edit-form details.checkbox[open] summary:before {
+    transform: none;
+    transition: none;
+    background-color: #0067B8;
+    border-color: #0067B8;
+}
+
+.edit-form h2 {
+    font-size: 16px;
+}
+
+.edit-form h3 {
+    font-size: 15px;
+}
+
+.context-menu {
+    position: absolute;
+    z-index: 3000;
+    background-color: #323232;
+    border: solid 1px #fff;
+}
+
+.context-menu-item {
+    padding: 8px;
+    min-width: 150px;
+    cursor: pointer;
+}
+
+    .context-menu-item:hover {
+        color: #fff;
+        background-color: #0067B8;
+    }
+
+.tree-node input.new-node-name {
+    width: 150px;
+    padding: 0;
+    background: transparent;
+    height: inherit;
+    border-style: none;
+}
+
+.edit-form .simple-box {
+    margin-right: 5px;
+    background-color: #fff;
+    padding: 7px 10px 7px 10px;
+    display: inline-block;
+    border: solid 1px #000;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.edit-form input[type="text"], .edit-form input[type="password"], .edit-form input[type="number"], .edit-form input[type="email"], .edit-form select, .edit-form textarea {
+    font-family: Segoe UI,'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    padding: 7px 10px;
+    border: 1px solid #000000;
+    outline: 0;
+    background: #FFF;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: unset;
+}
+
+    .edit-form input[type="text"]:focus, .edit-form input[type="password"]:focus, .edit-form input[type="number"]:focus, .edit-form input[type="email"]:focus, .edit-form textarea:focus, .edit-form select:focus, .edit-form .ui-multiselect.ui-state-active {
+        border-color: #000;
+        outline: 2px solid #0078D7;
+    }
+
+.edit-form select {
+    padding: 6px 8px;
+}
+
+.edit-form input[type=button], .edit-form button {
+    cursor: pointer;
+    font-size: 15px;
+    display: inline-block;
+    padding: 9px 40px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #000;
+    border: solid 1px transparent;
+    overflow: hidden;
+    line-height: 1em;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: bottom;
+    outline: 1px dashed transparent;
+    -webkit-appearance: none;
+}
+
+    .edit-form input[type=button]:hover, .edit-form button:hover {
+        border: solid 1px #777;
+    }
+
+    .edit-form input[type=button]:active, .edit-form button:active {
+        background-color: #999999;
+    }
+
+.edit-form .simple-box .deleteLink.small:before, .edit-form .simple-box .editLink.small:before {
+    margin-left: 4px;
+    margin-right: 0;
+}
+
+.edit-form input:disabled, .edit-form select:disabled, .edit-form textarea:disabled {
+    opacity:.5;
+}
+
+#chatMessages .message-wrapper-outer {
+    clear:both;
+}
+
+#chatMessages .message-wrapper-inner {
+    padding: 6px 12px;
+    background-color: #efefef;
+    display: inline-block;
+    border-radius: 16px;
+    margin: 5px 0;
+}
+
+
+#chatMessages .message-wrapper-inner.self {
+    background-color: #0078D7;
+    color: #fff;
+    float:right;
+}
+
+#chatMessages .message-sender {
+    font-size: 75%;
+}
+
+#chatMessages .message-text {
+}
+
+#chatInput {
+    border-width: 0 80px 0 0;
+    border-color: #efefef;
+    width: 100%;
+    height: 58px;
+    resize: none;
+    background-color: #efefef;
+}
+
+#chatSend {
+    position: absolute;
+    right: 3px;
+    bottom: 4px;
+    height: 52px;
+}
+
+.reaction-panel {
+    font-size: 15px;
+    font-family: Segoe UI Emoji;
+    background-color: #efefef;
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    z-index: 100;
+    width: 125px;
+    padding: 5px;
+    user-select: none;
+}
+
+.message-wrapper-inner.self:hover > .reaction-panel {
+    display: block;
+    float: right;
+    right: 0%;
+    background-color: #0078D7;
+}
+
+.message-wrapper-inner:not(.self):hover > .reaction-panel {
+    display: block;
+    float: left;
+    left: 50%;
+}
+
+#chatMessages .message-wrapper-inner {
+    position: relative;
+}
+
+button.code-button {
+    line-height: 1.4em !important;
+}
+
+span.remove {
+    cursor: pointer;
+    margin: 0 3px;
+}
+
+span.remove:before {
+    content: "\E711";
+    font-family: "labclient";
+    display: inline-block;
+}
+
+.sr-only {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.ai-output {
+    position: relative;
+    padding: 15px 15px 15px 34px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ai-chat .ai-output {
+    padding: 5px 15px 5px 15px;
+}
+
+.ai-output::before {
+    font-weight: normal;
+    font-family: "labclient";
+    font-size: 18px;
+    position: absolute;
+    margin-left: -26px;
+}
+
+.ai-output.teach::before {
+    content: "\e902";
+}
+
+.ai-output.show::before {
+    content: "\e920";
+}
+
+.ai-output.quiz::before {
+    content: "\f29c";
+}
+
+.ai-output.resources::before {
+    content: "\e71e";
+}
+
+.ai-output.custom::before {
+    content: "\e905";
+}
+
+.ai-output .buttons, .ai-chat .buttons {
+    float:right;
+    margin-left:10px;
+}
+
+.ai-output .buttons{
+    margin-top: -8px;
+}
+
+.ai-output .buttons .collapse::before, .ai-chat .buttons .collapse::before {
+    font-family: "labclient";
+    content: "\E70E";
+}
+
+.ai-chat .clear::before {
+    font-family: "labclient";
+    content: "\E711";
+}
+
+.ai-chat .buttons {
+    color: #fff;
+}
+
+.ai-chat .buttons {
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.ai-output.collapsed .buttons .collapse::before, .ai-chat.collapsed .buttons .collapse::before {
+    font-family: "labclient";
+    content: "\E70D";
+}
+
+.ai-output.collapsed .thumbs-up, .ai-output.collapsed .thumbs-down {
+    display:none;
+}
+
+.ai-output .buttons span, .ai-chat .buttons span {
+    margin-left:5px;
+    cursor:pointer;
+}
+
+.ai-output {
+    max-height: 400px;
+    height: 100%;
+    overflow: auto;
+    background-color: #efefef;
+}
+
+.ai-output .output p:first-child {
+    margin-top: 0;
+}
+
+.ai-output .output p:last-child {
+    margin-bottom: 0;
+}
+
+.ai-chat .ai-output{
+    margin-bottom:0;
+    margin-top:0;
+}
+
+.thumbs-up::before {
+    font-family: "labclient";
+    content: "\e970";
+}
+
+.thumbs-down::before {
+    font-family: "labclient";
+    content: "\e971";
+}
+
+.thumbs-up.selected::before {
+    color: green;
+}
+
+.thumbs-down.selected::before {
+    color: #ec0000;
+}
+
+.ai-completion-type-selector {
+    position: absolute;
+    z-index: 2;
+    border: solid 1px #333;
+    box-sizing: border-box;
+    margin-top: 2px;
+    background: #fff;
+}
+
+.ai-completion-type-selector .option {
+    cursor:pointer;
+    padding: 8px 20px 8px 8px;
+    background: rgba(238, 238, 238);
+}
+
+.ai-completion-type-selector .option:hover {
+    background: rgba(0, 0, 0, .2);
+}
+
+.ai-completion-type-selector .option::before {
+    font-weight: normal;
+    font-family: "labclient";
+    margin-right:5px;
+}
+
+.ai-completion-type-selector .option.teach::before {
+    content: "\e902";
+}
+
+.ai-completion-type-selector .option.show::before {
+    content: "\e920";
+}
+
+.ai-completion-type-selector .option.quiz::before {
+    content: "\f29c";
+}
+
+.ai-completion-type-selector .option.resources::before {
+    content: "\e71e";
+}
+
+.ai-output.quiz .question-feedback::before {
+    margin:10px;
+}
+
+.ai-output.quiz li.quiz-answer {
+    list-style-type: none;
+}
+
+.ai-completion-type-selector .option.custom::before {
+    content: "\e905";
+}
+
+.ai-chat {
+    position: relative;
+}
+
+.ai-chat .ai-chat-header {
+    padding:3px 5px;
+    background-color: #1d89de;
+}
+
+.ai-chat .ai-chat-header .topic {
+    color:#fff;
+    font-size:11px;
+    font-style:italic;
+}
+
+.ai-chat .ai-chat-header .suggest-topics {
+    margin-left:20px;
+    font-size:11px;
+    font-style:italic;
+}
+
+.ai-chat .ai-input {
+    width: 100%;
+    resize: vertical;
+    min-height: 50px;
+    padding-right: 55px;
+}
+
+.ai-chat .ai-submit {
+    color:#fff;
+    background-color: #1d89de;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 20px;
+    position: absolute;
+    right: 16px;
+    bottom: 12px;
+}
+
+.ai-chat .message {
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border-radius: 15px;
+    clear: both;
+}
+
+.ai-chat .message.user {
+    color: #fff;
+    background-color: #1d89de;
+    float: right;
+    margin-left: 50px;
+}
+
+.ai-chat .message.ai {
+    background-color: #ddd;
+    float:left;    
+    margin-right:50px;
+}
+
+.chat-response-loading .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 1px;
+    border-radius: 50%;
+    background-color: #1d89de;
+}
+
+@keyframes jumpingAnimation {
+    0 {
+        transform: translate(0, 0);
+    }
+
+    16% {
+        transform: translate(0, -6px);
+    }
+
+    33% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.chat-response-loading .dot:nth-last-child(1) {
+    animation: jumpingAnimation 0.8s 0.2s ease-in infinite;
+}
+
+.chat-response-loading .dot:nth-last-child(2) {
+    animation: jumpingAnimation 0.8s 0.4s ease-in infinite;
+}
+
+.chat-response-loading .dot:nth-last-child(3) {
+    animation: jumpingAnimation 0.8s 0.6s ease-in infinite;
+}
+
+
+/* expandable details/summary blocks */
+
+blockquote.expandable > details {
+    position: relative;
+}
+
+blockquote.expandable > details > summary {
+    list-style: none;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    cursor: pointer;
+    padding-right: 20px;
+}
+
+blockquote.expandable > details > summary::after {
+    content: "\e70d";
+    font-family: "labclient";
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    font-size:12px;
+}
+
+blockquote.expandable > details[open] > summary::after {
+    content: "\e70e";
+}
+
+blockquote.expandable > details[open] summary {
+    margin-bottom: 10px;
+}
+
+blockquote.expandable > details > summary::-webkit-details-marker {
+    display: none;
+}
+
+blockquote.expandable details {
+    border: none;
+    padding: 0;
+}
+
+blockquote.expandable > details > summary::after {
+    right: 0px;
+    top: 0px;
+}
