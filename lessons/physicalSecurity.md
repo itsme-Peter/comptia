@@ -61,7 +61,7 @@ Restrict and monitor access to a specific physical area/asset
 
 - Data destruction
     - Burning
-    - Shredding/pulping
+    - Shredding/pulping(water)
     - Pulverizing
     - Degaussing
 
